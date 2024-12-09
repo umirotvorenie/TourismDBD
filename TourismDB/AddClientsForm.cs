@@ -36,5 +36,20 @@ namespace TourismDB
                 $"VALUES ('{textBoxFirstName.Text}', '{textBoxLastName.Text}', '{textBoxDateOfBirth.Text}', '{textBoxEmail.Text}', '{textBoxPhoneNumber.Text}', '{textBoxAddress.Text}', '{textBoxPassportNumber.Text}')");
             }
         }
+        private void ClearFields()
+        {
+            textBoxFirstName.Text = "";
+            textBoxLastName.Text = "";
+            textBoxDateOfBirth.Text = "";
+            textBoxEmail.Text = "";
+            textBoxPhoneNumber.Text = "";
+            textBoxAddress.Text = "";
+            textBoxPassportNumber.Text = "";
+        }
+
+        private void Clear_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
     }
 }

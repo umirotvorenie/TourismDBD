@@ -13,8 +13,8 @@ namespace TourismDB
 {
     public partial class Form1 : Form
     {
-        private static string connectionString = @"Data Source=TourismDB.db;Version=3;";
-        private static DataTable currentDataTable = new DataTable();
+        public static string connectionString = @"Data Source=TourismDB.db;Version=3;";
+        public static DataTable currentDataTable = new DataTable();
         public Form1()
         {
             InitializeComponent();
@@ -226,6 +226,35 @@ namespace TourismDB
             AddClientsForm form = new AddClientsForm();
             this.Hide();
             form.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FormUpdateClients form = new FormUpdateClients();
+            this.Hide();
+            form.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewClients.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Выберите клиента для удаления.");
+                return;
+            }
+            DataGridViewRow selectedRow = dataGridViewClients.SelectedRows[0];
+            if (selectedRow.Cells["ClientID"].Value == null || !int.TryParse(selectedRow.Cells["ClientID"].Value.ToString(), out int clientId))
+            {
+                MessageBox.Show("Не удалось определить ID клиента.");
+                return;
+            }
+            var result = MessageBox.Show($"Вы уверены, что хотите удалить клиента с ID {clientId}?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                ExecuteQuery($"DELETE FROM Clients WHERE ClientID = {clientId}");
+                MessageBox.Show("Клиент успешно удалён.");
+            }
+            ExecuteQuery("SELECT * FROM Clients", dataGridViewClients);
         }
     }
 }
