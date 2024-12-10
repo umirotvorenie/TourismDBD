@@ -33,6 +33,7 @@ namespace TourismDB
             Form1.ExecuteQuery($"UPDATE Clients SET FirstName = '{textBoxFirstName.Text}', LastName = '{textBoxLastName.Text}', DateOfBirth = '{textBoxDateOfBirth.Text}', " +
             $"Email = '{textBoxEmail.Text}', PhoneNumber = '{textBoxPhoneNumber.Text}', Address = '{textBoxAddress.Text}', " +
             $"PassportNumber = '{textBoxPassportNumber.Text}' WHERE ClientID = {clientId}");
+            MessageBox.Show("Операция прошла успешно");
         }
         private void LoadDataClient_Click(object sender, EventArgs e)
         {
