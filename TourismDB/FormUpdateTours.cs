@@ -10,8 +10,10 @@ using System.Windows.Forms;
 
 namespace TourismDB
 {
+    
     public partial class FormUpdateTours : Form
     {
+        private bool isEmpty = false;
         public FormUpdateTours()
         {
             InitializeComponent();
@@ -41,6 +43,7 @@ namespace TourismDB
                 textBoxPrice.Text = row["Price"].ToString();
                 textBoxDestination.Text = row["Destination"].ToString();
                 textBoxAvailableSeats.Text = row["AvailableSeats"].ToString();
+                isEmpty = true;
             }
             else
             {
@@ -61,21 +64,28 @@ namespace TourismDB
 
         private void buttonAddTours_Click(object sender, EventArgs e)
         {
-            if (textBoxIDTour.Text == "")
+            if (isEmpty)
             {
-                MessageBox.Show("Введите ID тура");
-                return;
+                if (textBoxIDTour.Text == "")
+                {
+                    MessageBox.Show("Введите ID тура");
+                    return;
+                }
+                if (textBoxTourName.Text == "" || textBoxStartDate.Text == "" || textBoxEndDate.Text == "" || textBoxPrice.Text == "")
+                {
+                    MessageBox.Show("Обязательные не поля не могут быть пустыми : Название тура, Дата начала, Дата окончания, Цена");
+                    return;
+                }
+                string clientId = textBoxIDTour.Text;
+                Form1.ExecuteQuery($"UPDATE Tours SET TourName = '{textBoxTourName.Text}', Description = '{textBoxDescription.Text}', StartDate = '{textBoxStartDate.Text}', " +
+                $"EndDate = '{textBoxEndDate.Text}', Price = '{textBoxPrice.Text}', Destination = '{textBoxDestination.Text}', " +
+                $"AvailableSeats = '{textBoxAvailableSeats.Text}' WHERE TourID = {clientId}");
+                MessageBox.Show("Операция прошла успешно");
             }
-            if (textBoxTourName.Text == "" || textBoxStartDate.Text == "" || textBoxEndDate.Text == "" || textBoxPrice.Text == "")
+            else
             {
-                MessageBox.Show("Обязательные не поля не могут быть пустыми : Название тура, Дата начала, Дата окончания, Цена");
-                return;
+                MessageBox.Show("Операция не прошла");
             }
-            string clientId = textBoxIDTour.Text;
-            Form1.ExecuteQuery($"UPDATE Tours SET TourName = '{textBoxTourName.Text}', Description = '{textBoxDescription.Text}', StartDate = '{textBoxStartDate.Text}', " +
-            $"EndDate = '{textBoxEndDate.Text}', Price = '{textBoxPrice.Text}', Destination = '{textBoxDestination.Text}', " +
-            $"AvailableSeats = '{textBoxAvailableSeats.Text}' WHERE TourID = {clientId}");
-            MessageBox.Show("Операция прошла успешно");
         }
 
         private void buttonClear_Click(object sender, EventArgs e)

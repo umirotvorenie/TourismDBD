@@ -50,12 +50,33 @@
             this.textBoxSearchTours = new System.Windows.Forms.TextBox();
             this.dataGridViewTours = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.buttonExcelReservations = new System.Windows.Forms.Button();
+            this.buttonPDFRevervations = new System.Windows.Forms.Button();
+            this.buttonWordReservations = new System.Windows.Forms.Button();
+            this.buttonDeleteReservations = new System.Windows.Forms.Button();
+            this.buttonUpdateReservations = new System.Windows.Forms.Button();
+            this.buttonAddReservations = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.textBoxSearchReservations = new System.Windows.Forms.TextBox();
             this.dataGridViewReservations = new System.Windows.Forms.DataGridView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.buttonExcelPayments = new System.Windows.Forms.Button();
+            this.buttonPDFPayments = new System.Windows.Forms.Button();
+            this.buttonWordPayments = new System.Windows.Forms.Button();
+            this.buttonSeletePayments = new System.Windows.Forms.Button();
+            this.buttonUpdatePayments = new System.Windows.Forms.Button();
+            this.buttonAddPayments = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.textBoxSearchPayments = new System.Windows.Forms.TextBox();
             this.dataGridViewPayments = new System.Windows.Forms.DataGridView();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.textBoxSearchStaff = new System.Windows.Forms.TextBox();
             this.dataGridViewStaff = new System.Windows.Forms.DataGridView();
             this.tabControl1.SuspendLayout();
@@ -80,7 +101,7 @@
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.tabControl1.Location = new System.Drawing.Point(9, 11);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(788, 489);
@@ -99,9 +120,9 @@
             this.tabPage1.Controls.Add(this.textBoxSearchClients);
             this.tabPage1.Controls.Add(this.dataGridViewClients);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage1.Size = new System.Drawing.Size(780, 460);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Клиенты";
@@ -159,6 +180,7 @@
             // 
             // buttonUpdateClients
             // 
+            this.buttonUpdateClients.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.buttonUpdateClients.Location = new System.Drawing.Point(143, 393);
             this.buttonUpdateClients.Name = "buttonUpdateClients";
             this.buttonUpdateClients.Size = new System.Drawing.Size(106, 46);
@@ -191,7 +213,7 @@
             this.dataGridViewClients.AllowUserToAddRows = false;
             this.dataGridViewClients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewClients.Location = new System.Drawing.Point(31, 66);
-            this.dataGridViewClients.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewClients.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewClients.Name = "dataGridViewClients";
             this.dataGridViewClients.RowHeadersWidth = 51;
             this.dataGridViewClients.RowTemplate.Height = 24;
@@ -210,9 +232,9 @@
             this.tabPage2.Controls.Add(this.textBoxSearchTours);
             this.tabPage2.Controls.Add(this.dataGridViewTours);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage2.Size = new System.Drawing.Size(780, 460);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Туры";
@@ -226,6 +248,7 @@
             this.buttonExcelTours.TabIndex = 14;
             this.buttonExcelTours.Text = "Вывести в Excel";
             this.buttonExcelTours.UseVisualStyleBackColor = true;
+            this.buttonExcelTours.Click += new System.EventHandler(this.buttonExcelTours_Click);
             // 
             // buttonPDFTours
             // 
@@ -235,6 +258,7 @@
             this.buttonPDFTours.TabIndex = 13;
             this.buttonPDFTours.Text = "Вывести в PDF";
             this.buttonPDFTours.UseVisualStyleBackColor = true;
+            this.buttonPDFTours.Click += new System.EventHandler(this.buttonPDFTours_Click);
             // 
             // buttonWordTours
             // 
@@ -248,7 +272,7 @@
             // 
             // buttonDeleteTours
             // 
-            this.buttonDeleteTours.Location = new System.Drawing.Point(254, 393);
+            this.buttonDeleteTours.Location = new System.Drawing.Point(255, 393);
             this.buttonDeleteTours.Name = "buttonDeleteTours";
             this.buttonDeleteTours.Size = new System.Drawing.Size(106, 46);
             this.buttonDeleteTours.TabIndex = 11;
@@ -258,7 +282,7 @@
             // 
             // buttonUpdateTours
             // 
-            this.buttonUpdateTours.Location = new System.Drawing.Point(142, 393);
+            this.buttonUpdateTours.Location = new System.Drawing.Point(143, 393);
             this.buttonUpdateTours.Name = "buttonUpdateTours";
             this.buttonUpdateTours.Size = new System.Drawing.Size(106, 46);
             this.buttonUpdateTours.TabIndex = 10;
@@ -297,9 +321,10 @@
             // 
             // dataGridViewTours
             // 
+            this.dataGridViewTours.AllowUserToAddRows = false;
             this.dataGridViewTours.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTours.Location = new System.Drawing.Point(31, 66);
-            this.dataGridViewTours.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewTours.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewTours.Name = "dataGridViewTours";
             this.dataGridViewTours.RowHeadersWidth = 51;
             this.dataGridViewTours.RowTemplate.Height = 24;
@@ -308,30 +333,108 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.buttonExcelReservations);
+            this.tabPage3.Controls.Add(this.buttonPDFRevervations);
+            this.tabPage3.Controls.Add(this.buttonWordReservations);
+            this.tabPage3.Controls.Add(this.buttonDeleteReservations);
+            this.tabPage3.Controls.Add(this.buttonUpdateReservations);
+            this.tabPage3.Controls.Add(this.buttonAddReservations);
+            this.tabPage3.Controls.Add(this.label3);
             this.tabPage3.Controls.Add(this.textBoxSearchReservations);
             this.tabPage3.Controls.Add(this.dataGridViewReservations);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(780, 460);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Бронирования";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // buttonExcelReservations
+            // 
+            this.buttonExcelReservations.Location = new System.Drawing.Point(529, 393);
+            this.buttonExcelReservations.Name = "buttonExcelReservations";
+            this.buttonExcelReservations.Size = new System.Drawing.Size(106, 46);
+            this.buttonExcelReservations.TabIndex = 19;
+            this.buttonExcelReservations.Text = "Вывести в Excel";
+            this.buttonExcelReservations.UseVisualStyleBackColor = true;
+            this.buttonExcelReservations.Click += new System.EventHandler(this.buttonExcelReservations_Click);
+            // 
+            // buttonPDFRevervations
+            // 
+            this.buttonPDFRevervations.Location = new System.Drawing.Point(641, 393);
+            this.buttonPDFRevervations.Name = "buttonPDFRevervations";
+            this.buttonPDFRevervations.Size = new System.Drawing.Size(106, 46);
+            this.buttonPDFRevervations.TabIndex = 18;
+            this.buttonPDFRevervations.Text = "Вывести в PDF";
+            this.buttonPDFRevervations.UseVisualStyleBackColor = true;
+            this.buttonPDFRevervations.Click += new System.EventHandler(this.buttonPDFRevervations_Click);
+            // 
+            // buttonWordReservations
+            // 
+            this.buttonWordReservations.Location = new System.Drawing.Point(417, 393);
+            this.buttonWordReservations.Name = "buttonWordReservations";
+            this.buttonWordReservations.Size = new System.Drawing.Size(106, 46);
+            this.buttonWordReservations.TabIndex = 17;
+            this.buttonWordReservations.Text = "Вывести в Word";
+            this.buttonWordReservations.UseVisualStyleBackColor = true;
+            this.buttonWordReservations.Click += new System.EventHandler(this.buttonWordReservations_Click);
+            // 
+            // buttonDeleteReservations
+            // 
+            this.buttonDeleteReservations.Location = new System.Drawing.Point(255, 393);
+            this.buttonDeleteReservations.Name = "buttonDeleteReservations";
+            this.buttonDeleteReservations.Size = new System.Drawing.Size(106, 46);
+            this.buttonDeleteReservations.TabIndex = 16;
+            this.buttonDeleteReservations.Text = "Удалить запись";
+            this.buttonDeleteReservations.UseVisualStyleBackColor = true;
+            this.buttonDeleteReservations.Click += new System.EventHandler(this.buttonDeleteReservations_Click);
+            // 
+            // buttonUpdateReservations
+            // 
+            this.buttonUpdateReservations.Location = new System.Drawing.Point(143, 393);
+            this.buttonUpdateReservations.Name = "buttonUpdateReservations";
+            this.buttonUpdateReservations.Size = new System.Drawing.Size(106, 46);
+            this.buttonUpdateReservations.TabIndex = 15;
+            this.buttonUpdateReservations.Text = "Обновить данные";
+            this.buttonUpdateReservations.UseVisualStyleBackColor = true;
+            this.buttonUpdateReservations.Click += new System.EventHandler(this.buttonUpdateReservations_Click);
+            // 
+            // buttonAddReservations
+            // 
+            this.buttonAddReservations.Location = new System.Drawing.Point(31, 393);
+            this.buttonAddReservations.Name = "buttonAddReservations";
+            this.buttonAddReservations.Size = new System.Drawing.Size(106, 46);
+            this.buttonAddReservations.TabIndex = 10;
+            this.buttonAddReservations.Text = "Добавить новую запись";
+            this.buttonAddReservations.UseVisualStyleBackColor = true;
+            this.buttonAddReservations.Click += new System.EventHandler(this.buttonAddReservations_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.label3.Location = new System.Drawing.Point(62, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(68, 25);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Поиск";
+            // 
             // textBoxSearchReservations
             // 
             this.textBoxSearchReservations.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxSearchReservations.Location = new System.Drawing.Point(34, 59);
+            this.textBoxSearchReservations.Location = new System.Drawing.Point(131, 31);
             this.textBoxSearchReservations.Name = "textBoxSearchReservations";
-            this.textBoxSearchReservations.Size = new System.Drawing.Size(716, 30);
+            this.textBoxSearchReservations.Size = new System.Drawing.Size(581, 30);
             this.textBoxSearchReservations.TabIndex = 3;
             this.textBoxSearchReservations.TextChanged += new System.EventHandler(this.textBoxSearchReservations_TextChanged);
             // 
             // dataGridViewReservations
             // 
+            this.dataGridViewReservations.AllowUserToAddRows = false;
             this.dataGridViewReservations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewReservations.Location = new System.Drawing.Point(34, 94);
-            this.dataGridViewReservations.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewReservations.Location = new System.Drawing.Point(31, 66);
+            this.dataGridViewReservations.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewReservations.Name = "dataGridViewReservations";
             this.dataGridViewReservations.RowHeadersWidth = 51;
             this.dataGridViewReservations.RowTemplate.Height = 24;
@@ -340,30 +443,101 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.buttonExcelPayments);
+            this.tabPage4.Controls.Add(this.buttonPDFPayments);
+            this.tabPage4.Controls.Add(this.buttonWordPayments);
+            this.tabPage4.Controls.Add(this.buttonSeletePayments);
+            this.tabPage4.Controls.Add(this.buttonUpdatePayments);
+            this.tabPage4.Controls.Add(this.buttonAddPayments);
+            this.tabPage4.Controls.Add(this.label4);
             this.tabPage4.Controls.Add(this.textBoxSearchPayments);
             this.tabPage4.Controls.Add(this.dataGridViewPayments);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(780, 460);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Платежи";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // buttonExcelPayments
+            // 
+            this.buttonExcelPayments.Location = new System.Drawing.Point(529, 393);
+            this.buttonExcelPayments.Name = "buttonExcelPayments";
+            this.buttonExcelPayments.Size = new System.Drawing.Size(106, 46);
+            this.buttonExcelPayments.TabIndex = 25;
+            this.buttonExcelPayments.Text = "Вывести в Excel";
+            this.buttonExcelPayments.UseVisualStyleBackColor = true;
+            // 
+            // buttonPDFPayments
+            // 
+            this.buttonPDFPayments.Location = new System.Drawing.Point(641, 393);
+            this.buttonPDFPayments.Name = "buttonPDFPayments";
+            this.buttonPDFPayments.Size = new System.Drawing.Size(106, 46);
+            this.buttonPDFPayments.TabIndex = 24;
+            this.buttonPDFPayments.Text = "Вывести в PDF";
+            this.buttonPDFPayments.UseVisualStyleBackColor = true;
+            // 
+            // buttonWordPayments
+            // 
+            this.buttonWordPayments.Location = new System.Drawing.Point(417, 393);
+            this.buttonWordPayments.Name = "buttonWordPayments";
+            this.buttonWordPayments.Size = new System.Drawing.Size(106, 46);
+            this.buttonWordPayments.TabIndex = 23;
+            this.buttonWordPayments.Text = "Вывести в Word";
+            this.buttonWordPayments.UseVisualStyleBackColor = true;
+            // 
+            // buttonSeletePayments
+            // 
+            this.buttonSeletePayments.Location = new System.Drawing.Point(255, 393);
+            this.buttonSeletePayments.Name = "buttonSeletePayments";
+            this.buttonSeletePayments.Size = new System.Drawing.Size(106, 46);
+            this.buttonSeletePayments.TabIndex = 22;
+            this.buttonSeletePayments.Text = "Удалить запись";
+            this.buttonSeletePayments.UseVisualStyleBackColor = true;
+            // 
+            // buttonUpdatePayments
+            // 
+            this.buttonUpdatePayments.Location = new System.Drawing.Point(143, 393);
+            this.buttonUpdatePayments.Name = "buttonUpdatePayments";
+            this.buttonUpdatePayments.Size = new System.Drawing.Size(106, 46);
+            this.buttonUpdatePayments.TabIndex = 21;
+            this.buttonUpdatePayments.Text = "Обновить данные";
+            this.buttonUpdatePayments.UseVisualStyleBackColor = true;
+            // 
+            // buttonAddPayments
+            // 
+            this.buttonAddPayments.Location = new System.Drawing.Point(31, 393);
+            this.buttonAddPayments.Name = "buttonAddPayments";
+            this.buttonAddPayments.Size = new System.Drawing.Size(106, 46);
+            this.buttonAddPayments.TabIndex = 20;
+            this.buttonAddPayments.Text = "Добавить новую запись";
+            this.buttonAddPayments.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.label4.Location = new System.Drawing.Point(62, 33);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 25);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Поиск";
+            // 
             // textBoxSearchPayments
             // 
             this.textBoxSearchPayments.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxSearchPayments.Location = new System.Drawing.Point(34, 59);
+            this.textBoxSearchPayments.Location = new System.Drawing.Point(131, 31);
             this.textBoxSearchPayments.Name = "textBoxSearchPayments";
-            this.textBoxSearchPayments.Size = new System.Drawing.Size(716, 30);
+            this.textBoxSearchPayments.Size = new System.Drawing.Size(581, 30);
             this.textBoxSearchPayments.TabIndex = 4;
             this.textBoxSearchPayments.TextChanged += new System.EventHandler(this.textBoxSearchPayments_TextChanged);
             // 
             // dataGridViewPayments
             // 
             this.dataGridViewPayments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPayments.Location = new System.Drawing.Point(34, 94);
-            this.dataGridViewPayments.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewPayments.Location = new System.Drawing.Point(31, 66);
+            this.dataGridViewPayments.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewPayments.Name = "dataGridViewPayments";
             this.dataGridViewPayments.RowHeadersWidth = 51;
             this.dataGridViewPayments.RowTemplate.Height = 24;
@@ -372,30 +546,101 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.button1);
+            this.tabPage5.Controls.Add(this.button2);
+            this.tabPage5.Controls.Add(this.button3);
+            this.tabPage5.Controls.Add(this.button4);
+            this.tabPage5.Controls.Add(this.button5);
+            this.tabPage5.Controls.Add(this.button6);
+            this.tabPage5.Controls.Add(this.label5);
             this.tabPage5.Controls.Add(this.textBoxSearchStaff);
             this.tabPage5.Controls.Add(this.dataGridViewStaff);
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(780, 460);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Сотрудники";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(529, 393);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(106, 46);
+            this.button1.TabIndex = 31;
+            this.button1.Text = "Вывести в Excel";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(641, 393);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(106, 46);
+            this.button2.TabIndex = 30;
+            this.button2.Text = "Вывести в PDF";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(417, 393);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(106, 46);
+            this.button3.TabIndex = 29;
+            this.button3.Text = "Вывести в Word";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(255, 393);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(106, 46);
+            this.button4.TabIndex = 28;
+            this.button4.Text = "Удалить запись";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(143, 393);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(106, 46);
+            this.button5.TabIndex = 27;
+            this.button5.Text = "Обновить данные";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(31, 393);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(106, 46);
+            this.button6.TabIndex = 26;
+            this.button6.Text = "Добавить новую запись";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.label5.Location = new System.Drawing.Point(62, 33);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(68, 25);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Поиск";
+            // 
             // textBoxSearchStaff
             // 
             this.textBoxSearchStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxSearchStaff.Location = new System.Drawing.Point(34, 59);
+            this.textBoxSearchStaff.Location = new System.Drawing.Point(131, 31);
             this.textBoxSearchStaff.Name = "textBoxSearchStaff";
-            this.textBoxSearchStaff.Size = new System.Drawing.Size(716, 30);
+            this.textBoxSearchStaff.Size = new System.Drawing.Size(581, 30);
             this.textBoxSearchStaff.TabIndex = 5;
             this.textBoxSearchStaff.TextChanged += new System.EventHandler(this.textBoxSearchStaff_TextChanged);
             // 
             // dataGridViewStaff
             // 
             this.dataGridViewStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewStaff.Location = new System.Drawing.Point(34, 94);
-            this.dataGridViewStaff.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewStaff.Location = new System.Drawing.Point(31, 66);
+            this.dataGridViewStaff.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewStaff.Name = "dataGridViewStaff";
             this.dataGridViewStaff.RowHeadersWidth = 51;
             this.dataGridViewStaff.RowTemplate.Height = 24;
@@ -408,7 +653,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(809, 502);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
@@ -463,6 +708,27 @@
         private System.Windows.Forms.Button buttonUpdateTours;
         private System.Windows.Forms.Button buttonAddTours;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button buttonExcelReservations;
+        private System.Windows.Forms.Button buttonPDFRevervations;
+        private System.Windows.Forms.Button buttonWordReservations;
+        private System.Windows.Forms.Button buttonDeleteReservations;
+        private System.Windows.Forms.Button buttonUpdateReservations;
+        private System.Windows.Forms.Button buttonAddReservations;
+        private System.Windows.Forms.Button buttonExcelPayments;
+        private System.Windows.Forms.Button buttonPDFPayments;
+        private System.Windows.Forms.Button buttonWordPayments;
+        private System.Windows.Forms.Button buttonSeletePayments;
+        private System.Windows.Forms.Button buttonUpdatePayments;
+        private System.Windows.Forms.Button buttonAddPayments;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
     }
 }
 

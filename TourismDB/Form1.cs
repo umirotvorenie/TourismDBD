@@ -10,6 +10,7 @@ using System.IO;
 using iText.Kernel.Pdf;
 using iText.Kernel.Font;
 using iText.IO.Font;
+using System.Diagnostics;
 
 
 
@@ -26,11 +27,10 @@ namespace TourismDB
 
         }
 
-        public void ExportToPdf(DataGridView dataGridView)
+        public void ExportToPdf(DataGridView dataGridView, string filePath)
         {
             try
             {
-                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "output.pdf");
                 var pdfWriter = new PdfWriter(filePath);
                 var pdfDocument = new PdfDocument(pdfWriter);
                 var pdfDoc = new iText.Layout.Document(pdfDocument);
@@ -52,7 +52,7 @@ namespace TourismDB
                 }
                 pdfDoc.Add(table);
                 pdfDoc.Close();
-                MessageBox.Show("PDF успешно экспортирован.");
+                MessageBox.Show("PDF успешно экспортирован.");               
             }
             catch (Exception ex)
             {
@@ -369,6 +369,12 @@ namespace TourismDB
                 MessageBox.Show("Не удалось определить ID клиента.");
                 return;
             }
+            ExecuteQuery($"SELECT COUNT(*) AS ReservationCount FROM Reservation WHERE ClientID = {clientId}");
+            if (currentDataTable != null && currentDataTable.Rows.Count > 0 && int.TryParse(currentDataTable.Rows[0]["ReservationCount"].ToString(), out int reservationCount) && reservationCount > 0)
+            {
+                MessageBox.Show("Невозможно удалить клиента, так как на него существуют бронирования.");
+                return;
+            }
             var result = MessageBox.Show($"Вы уверены, что хотите удалить клиента с ID {clientId}?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
@@ -401,41 +407,105 @@ namespace TourismDB
                 MessageBox.Show("Не удалось определить ID тура.");
                 return;
             }
+            ExecuteQuery($"SELECT COUNT(*) AS ReservationCount FROM Reservation WHERE TourID = {tourId}");
+            if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0 && int.TryParse(Form1.currentDataTable.Rows[0]["ReservationCount"].ToString(), out int reservationCount) && reservationCount > 0)
+            {
+                MessageBox.Show("Невозможно удалить тур, так как на него существуют бронирования.");
+                return;
+            }
             var result = MessageBox.Show($"Вы уверены, что хотите удалить тур с ID {tourId}?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
-            {
+            {             
                 ExecuteQuery($"DELETE FROM Tours WHERE TourID = {tourId}");
                 MessageBox.Show("Тур успешно удалён.");
             }
             ExecuteQuery("SELECT * FROM Tours", dataGridViewTours);
+        }
+        private void buttonDeleteReservations_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewReservations.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Выберите бронь для удаления.");
+                return;
+            }
+            DataGridViewRow selectedRow = dataGridViewReservations.SelectedRows[0];
+            if (selectedRow.Cells["ReservationID"].Value == null || !int.TryParse(selectedRow.Cells["ReservationID"].Value.ToString(), out int reservId))
+            {
+                MessageBox.Show("Не удалось определить ID брони.");
+                return;
+            }
+            var result = MessageBox.Show($"Вы уверены, что хотите удалить бронь с ID {reservId}?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                ExecuteQuery($"DELETE FROM Reservation WHERE ReservationID = {reservId}");
+                MessageBox.Show("Бронь успешно удалена.");
+            }
+            ExecuteQuery("SELECT * FROM Reservation", dataGridViewReservations);
         }
 
         private void buttonUpdateTours_Click(object sender, EventArgs e)
         {
             GoForm(new FormUpdateTours());
         }
-
+        //Word
         private void buttonWordClients_Click(object sender, EventArgs e)
         {
             string path = "Clients.docx";
             ExportDataGridViewToWord(dataGridViewClients, path);
         }
-
         private void buttonWordTours_Click(object sender, EventArgs e)
         {
             string path = "Tours.docx";
             ExportDataGridViewToWord(dataGridViewTours, path);
         }
-
+        private void buttonWordReservations_Click(object sender, EventArgs e)
+        {
+            string path = "Reservations.docx";
+            ExportDataGridViewToWord(dataGridViewReservations, path);
+        }
+        //Excel
         private void buttonExcelClients_Click(object sender, EventArgs e)
         {
             string path = "Clients.xlsx";
             ExportDataGridViewToExcel(dataGridViewClients, path);
         }
-
+        private void buttonExcelTours_Click(object sender, EventArgs e)
+        {
+            string path = "Tours.xlsx";
+            ExportDataGridViewToExcel(dataGridViewTours, path);
+        }
+        private void buttonExcelReservations_Click(object sender, EventArgs e)
+        {
+            string path = "Reservations.xlsx";
+            ExportDataGridViewToExcel(dataGridViewReservations, path);
+        }
+        //pdf
         private void buttonPDFClients_Click(object sender, EventArgs e)
         {
-            ExportToPdf(dataGridViewClients);
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Clients.pdf");
+            ExportToPdf(dataGridViewClients, path);
         }
+        private void buttonPDFTours_Click(object sender, EventArgs e)
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Tours.pdf");
+            ExportToPdf(dataGridViewTours, path);
+        }
+        private void buttonPDFRevervations_Click(object sender, EventArgs e)
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Reservations.pdf");
+            ExportToPdf(dataGridViewReservations, path);
+        }
+
+        private void buttonAddReservations_Click(object sender, EventArgs e)
+        {
+            GoForm(new AddReservationsForm());
+        }
+
+        private void buttonUpdateReservations_Click(object sender, EventArgs e)
+        {
+            GoForm(new FormUpdateReservations());
+        }
+
+
     }
 }

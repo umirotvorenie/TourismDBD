@@ -12,6 +12,7 @@ namespace TourismDB
 {
     public partial class FormUpdateClients : Form
     {
+        private bool isEmpty = false;
         public FormUpdateClients()
         {
             InitializeComponent();
@@ -19,21 +20,30 @@ namespace TourismDB
 
         private void buttonAddClients_Click(object sender, EventArgs e)
         {
-            if (textBoxIDClient.Text == "")
+            if (isEmpty)
             {
-                MessageBox.Show("Введите ID клиента");
-                return;
+                if (textBoxIDClient.Text == "")
+                {
+                    MessageBox.Show("Введите ID клиента");
+                    return;
+                }
+                if (textBoxFirstName.Text == "" || textBoxLastName.Text == "")
+                {
+                    MessageBox.Show("Поля Имя и Фамилия не могут быть пустыми.");
+                    return;
+                }
+                string clientId = textBoxIDClient.Text;
+                Form1.ExecuteQuery($"UPDATE Clients SET FirstName = '{textBoxFirstName.Text}', LastName = '{textBoxLastName.Text}', DateOfBirth = '{textBoxDateOfBirth.Text}', " +
+                $"Email = '{textBoxEmail.Text}', PhoneNumber = '{textBoxPhoneNumber.Text}', Address = '{textBoxAddress.Text}', " +
+                $"PassportNumber = '{textBoxPassportNumber.Text}' WHERE ClientID = {clientId}");
+                MessageBox.Show("Операция прошла успешно");
             }
-            if (textBoxFirstName.Text == "" || textBoxLastName.Text == "")
+            else
             {
-                MessageBox.Show("Поля Имя и Фамилия не могут быть пустыми.");
-                return;
+                MessageBox.Show("Операция не прошла");
+                ClearFields();
             }
-            string clientId = textBoxIDClient.Text;
-            Form1.ExecuteQuery($"UPDATE Clients SET FirstName = '{textBoxFirstName.Text}', LastName = '{textBoxLastName.Text}', DateOfBirth = '{textBoxDateOfBirth.Text}', " +
-            $"Email = '{textBoxEmail.Text}', PhoneNumber = '{textBoxPhoneNumber.Text}', Address = '{textBoxAddress.Text}', " +
-            $"PassportNumber = '{textBoxPassportNumber.Text}' WHERE ClientID = {clientId}");
-            MessageBox.Show("Операция прошла успешно");
+
         }
         private void LoadDataClient_Click(object sender, EventArgs e)
         {
@@ -59,6 +69,7 @@ namespace TourismDB
                 textBoxPhoneNumber.Text = row["PhoneNumber"].ToString();
                 textBoxAddress.Text = row["Address"].ToString();
                 textBoxPassportNumber.Text = row["PassportNumber"].ToString();
+                isEmpty = true;
             }
             else
             {

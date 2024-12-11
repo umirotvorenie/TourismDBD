@@ -35,8 +35,7 @@ namespace TourismDB
                 MessageBox.Show("Клиент успешно добавлен");
                 ClearFields();
 
-            }
-            
+            }         
         }
         private void ClearFields()
         {
