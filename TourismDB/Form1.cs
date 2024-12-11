@@ -25,7 +25,7 @@ namespace TourismDB
         }
 
         public void ExportToPdf(DataGridView dataGridView)
-        {
+        {        
             try
             {
                 string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "output.pdf");
