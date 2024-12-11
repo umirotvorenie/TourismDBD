@@ -8,6 +8,8 @@ using Microsoft.Office.Interop.Excel;
 using DataTable = System.Data.DataTable;
 using System.IO;
 using iText.Kernel.Pdf;
+using iText.Kernel.Font;
+using iText.IO.Font;
 
 
 
@@ -25,26 +27,27 @@ namespace TourismDB
         }
 
         public void ExportToPdf(DataGridView dataGridView)
-        {        
+        {
             try
             {
                 string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "output.pdf");
                 var pdfWriter = new PdfWriter(filePath);
                 var pdfDocument = new PdfDocument(pdfWriter);
                 var pdfDoc = new iText.Layout.Document(pdfDocument);
+                PdfFont timesFont = PdfFontFactory.CreateFont("c:/windows/fonts/times.ttf", PdfEncodings.IDENTITY_H, true);
                 iText.Layout.Element.Table table = new iText.Layout.Element.Table(dataGridView.Columns.Count - 1);
                 table.UseAllAvailableWidth();
                 var columnsList = dataGridView.Columns.Cast<DataGridViewColumn>().ToList();
                 foreach (DataGridViewColumn column in columnsList.Take(dataGridView.Columns.Count - 1))
                 {
-                    iText.Layout.Element.Cell headerCell = new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(column.HeaderText));
+                    iText.Layout.Element.Cell headerCell = new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(column.HeaderText).SetFont(timesFont));
                     table.AddHeaderCell(headerCell);
                 }
                 foreach (DataGridViewRow row in dataGridView.Rows)
                 {
                     foreach (DataGridViewCell cell in row.Cells.Cast<DataGridViewCell>().Take(dataGridView.Columns.Count - 1))
                     {
-                        table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(cell.Value.ToString())));
+                        table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(cell.Value.ToString()).SetFont(timesFont)));
                     }
                 }
                 pdfDoc.Add(table);
@@ -56,8 +59,6 @@ namespace TourismDB
                 MessageBox.Show(ex.Message);
             }
         }
-
-
 
         public void ExportDataGridViewToWord(DataGridView dataGridView, string filePath)
         {
@@ -103,7 +104,6 @@ namespace TourismDB
                 MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         public static void ExportDataGridViewToExcel(DataGridView dataGridView, string filePath)
         {
             if (dataGridView == null || dataGridView.Rows.Count == 0)
@@ -150,7 +150,6 @@ namespace TourismDB
                 MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         public static void ExecuteQuery(string query, DataGridView dataGridView = null)
         {
             using (SQLiteConnection conn = new SQLiteConnection(connectionString))
@@ -233,7 +232,6 @@ namespace TourismDB
                 MessageBox.Show($"Ошибка при фильтрации данных: {ex.Message}");
             }
         }
-
         private static void SetColumnHeaders(DataGridView dataGridView)
         {
             if (dataGridView.Columns.Count > 0)
