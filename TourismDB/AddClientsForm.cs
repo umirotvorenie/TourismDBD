@@ -16,14 +16,12 @@ namespace TourismDB
         {
             InitializeComponent();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             Form1 form1 = new Form1();
             this.Hide();
             form1.Show();
         }
-
         private void buttonAddClients_Click(object sender, EventArgs e)
         {
             if (textBoxFirstName.Text == "" || textBoxLastName.Text == "") 
@@ -46,7 +44,6 @@ namespace TourismDB
             textBoxAddress.Text = "";
             textBoxPassportNumber.Text = "";
         }
-
         private void Clear_Click(object sender, EventArgs e)
         {
             ClearFields();
