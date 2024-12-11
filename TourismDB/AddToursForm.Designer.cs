@@ -52,10 +52,9 @@
             this.label8.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label8.Location = new System.Drawing.Point(47, 376);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(21, 306);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(208, 29);
+            this.label8.Size = new System.Drawing.Size(170, 25);
             this.label8.TabIndex = 43;
             this.label8.Text = "Свободных мест";
             // 
@@ -64,10 +63,9 @@
             this.label7.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label7.Location = new System.Drawing.Point(24, 332);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(6, 270);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(231, 29);
+            this.label7.Size = new System.Drawing.Size(185, 25);
             this.label7.TabIndex = 42;
             this.label7.Text = "Место назначения";
             // 
@@ -76,10 +74,9 @@
             this.label6.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label6.Location = new System.Drawing.Point(181, 288);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(133, 235);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(74, 29);
+            this.label6.Size = new System.Drawing.Size(58, 25);
             this.label6.TabIndex = 41;
             this.label6.Text = "Цена";
             // 
@@ -88,10 +85,9 @@
             this.label5.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label5.Location = new System.Drawing.Point(53, 243);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(28, 198);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(202, 29);
+            this.label5.Size = new System.Drawing.Size(163, 25);
             this.label5.TabIndex = 40;
             this.label5.Text = "Дата окончания";
             // 
@@ -100,10 +96,9 @@
             this.label4.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label4.Location = new System.Drawing.Point(89, 199);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(61, 162);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(161, 29);
+            this.label4.Size = new System.Drawing.Size(130, 25);
             this.label4.TabIndex = 39;
             this.label4.Text = "Дата начала";
             // 
@@ -112,10 +107,9 @@
             this.label3.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label3.Location = new System.Drawing.Point(121, 155);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(89, 127);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(129, 29);
+            this.label3.Size = new System.Drawing.Size(102, 25);
             this.label3.TabIndex = 38;
             this.label3.Text = "Описание";
             // 
@@ -124,82 +118,73 @@
             this.label2.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label2.Location = new System.Drawing.Point(65, 111);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(45, 91);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(186, 29);
+            this.label2.Size = new System.Drawing.Size(146, 25);
             this.label2.TabIndex = 37;
             this.label2.Text = "Название тура";
             // 
             // textBoxAvailableSeats
             // 
             this.textBoxAvailableSeats.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxAvailableSeats.Location = new System.Drawing.Point(263, 373);
-            this.textBoxAvailableSeats.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxAvailableSeats.Location = new System.Drawing.Point(197, 303);
             this.textBoxAvailableSeats.Name = "textBoxAvailableSeats";
-            this.textBoxAvailableSeats.Size = new System.Drawing.Size(528, 36);
+            this.textBoxAvailableSeats.Size = new System.Drawing.Size(397, 30);
             this.textBoxAvailableSeats.TabIndex = 36;
             // 
             // textBoxDestination
             // 
             this.textBoxDestination.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxDestination.Location = new System.Drawing.Point(263, 329);
-            this.textBoxDestination.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxDestination.Location = new System.Drawing.Point(197, 267);
             this.textBoxDestination.Name = "textBoxDestination";
-            this.textBoxDestination.Size = new System.Drawing.Size(528, 36);
+            this.textBoxDestination.Size = new System.Drawing.Size(397, 30);
             this.textBoxDestination.TabIndex = 35;
             // 
             // textBoxPrice
             // 
             this.textBoxPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxPrice.Location = new System.Drawing.Point(263, 285);
-            this.textBoxPrice.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxPrice.Location = new System.Drawing.Point(197, 232);
             this.textBoxPrice.Name = "textBoxPrice";
-            this.textBoxPrice.Size = new System.Drawing.Size(528, 36);
+            this.textBoxPrice.Size = new System.Drawing.Size(397, 30);
             this.textBoxPrice.TabIndex = 34;
             // 
             // textBoxEndDate
             // 
             this.textBoxEndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxEndDate.Location = new System.Drawing.Point(263, 240);
-            this.textBoxEndDate.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxEndDate.Location = new System.Drawing.Point(197, 195);
             this.textBoxEndDate.Name = "textBoxEndDate";
-            this.textBoxEndDate.Size = new System.Drawing.Size(528, 36);
+            this.textBoxEndDate.Size = new System.Drawing.Size(397, 30);
             this.textBoxEndDate.TabIndex = 33;
             // 
             // textBoxStartDate
             // 
             this.textBoxStartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxStartDate.Location = new System.Drawing.Point(263, 196);
-            this.textBoxStartDate.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxStartDate.Location = new System.Drawing.Point(197, 159);
             this.textBoxStartDate.Name = "textBoxStartDate";
-            this.textBoxStartDate.Size = new System.Drawing.Size(528, 36);
+            this.textBoxStartDate.Size = new System.Drawing.Size(397, 30);
             this.textBoxStartDate.TabIndex = 32;
             // 
             // textBoxDescription
             // 
             this.textBoxDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxDescription.Location = new System.Drawing.Point(263, 152);
-            this.textBoxDescription.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxDescription.Location = new System.Drawing.Point(197, 124);
             this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(528, 36);
+            this.textBoxDescription.Size = new System.Drawing.Size(397, 30);
             this.textBoxDescription.TabIndex = 31;
             // 
             // textBoxTourName
             // 
             this.textBoxTourName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxTourName.Location = new System.Drawing.Point(263, 108);
-            this.textBoxTourName.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxTourName.Location = new System.Drawing.Point(197, 88);
             this.textBoxTourName.Name = "textBoxTourName";
-            this.textBoxTourName.Size = new System.Drawing.Size(528, 36);
+            this.textBoxTourName.Size = new System.Drawing.Size(397, 30);
             this.textBoxTourName.TabIndex = 30;
             // 
             // Clear
             // 
-            this.Clear.Location = new System.Drawing.Point(821, 278);
-            this.Clear.Margin = new System.Windows.Forms.Padding(4);
+            this.Clear.Location = new System.Drawing.Point(616, 226);
             this.Clear.Name = "Clear";
-            this.Clear.Size = new System.Drawing.Size(189, 59);
+            this.Clear.Size = new System.Drawing.Size(142, 48);
             this.Clear.TabIndex = 46;
             this.Clear.Text = "Очистить поля";
             this.Clear.UseVisualStyleBackColor = true;
@@ -207,10 +192,9 @@
             // 
             // buttonAddClients
             // 
-            this.buttonAddClients.Location = new System.Drawing.Point(821, 204);
-            this.buttonAddClients.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonAddClients.Location = new System.Drawing.Point(616, 166);
             this.buttonAddClients.Name = "buttonAddClients";
-            this.buttonAddClients.Size = new System.Drawing.Size(189, 59);
+            this.buttonAddClients.Size = new System.Drawing.Size(142, 48);
             this.buttonAddClients.TabIndex = 45;
             this.buttonAddClients.Text = "Добавить";
             this.buttonAddClients.UseVisualStyleBackColor = true;
@@ -218,10 +202,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(821, 352);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(616, 286);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(189, 59);
+            this.button1.Size = new System.Drawing.Size(142, 48);
             this.button1.TabIndex = 44;
             this.button1.Text = "Назад";
             this.button1.UseVisualStyleBackColor = true;
@@ -229,9 +212,9 @@
             // 
             // AddToursForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1039, 443);
+            this.ClientSize = new System.Drawing.Size(779, 360);
             this.Controls.Add(this.Clear);
             this.Controls.Add(this.buttonAddClients);
             this.Controls.Add(this.button1);
@@ -249,6 +232,7 @@
             this.Controls.Add(this.textBoxStartDate);
             this.Controls.Add(this.textBoxDescription);
             this.Controls.Add(this.textBoxTourName);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "AddToursForm";
             this.Text = "Добавление нового тура";
             this.ResumeLayout(false);

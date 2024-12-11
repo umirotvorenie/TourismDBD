@@ -1,13 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
+using Microsoft.Office.Interop.Word;
+using Microsoft.Office.Interop.Excel;
+using DataTable = System.Data.DataTable;
+using System.IO;
+using iText.Kernel.Pdf;
+
+
 
 namespace TourismDB
 {
@@ -19,6 +21,134 @@ namespace TourismDB
         {
             InitializeComponent();
             ExecuteQuery("SELECT * FROM Clients", dataGridViewClients);
+
+        }
+
+        public void ExportToPdf(DataGridView dataGridView)
+        {
+            try
+            {
+                string filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "output.pdf");
+                var pdfWriter = new PdfWriter(filePath);
+                var pdfDocument = new PdfDocument(pdfWriter);
+                var pdfDoc = new iText.Layout.Document(pdfDocument);
+                iText.Layout.Element.Table table = new iText.Layout.Element.Table(dataGridView.Columns.Count - 1);
+                table.UseAllAvailableWidth();
+                var columnsList = dataGridView.Columns.Cast<DataGridViewColumn>().ToList();
+                foreach (DataGridViewColumn column in columnsList.Take(dataGridView.Columns.Count - 1))
+                {
+                    iText.Layout.Element.Cell headerCell = new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(column.HeaderText));
+                    table.AddHeaderCell(headerCell);
+                }
+                foreach (DataGridViewRow row in dataGridView.Rows)
+                {
+                    foreach (DataGridViewCell cell in row.Cells.Cast<DataGridViewCell>().Take(dataGridView.Columns.Count - 1))
+                    {
+                        table.AddCell(new iText.Layout.Element.Cell().Add(new iText.Layout.Element.Paragraph(cell.Value.ToString())));
+                    }
+                }
+                pdfDoc.Add(table);
+                pdfDoc.Close();
+                MessageBox.Show("PDF успешно экспортирован.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+
+        public void ExportDataGridViewToWord(DataGridView dataGridView, string filePath)
+        {
+            if (dataGridView == null || dataGridView.Rows.Count == 0)
+            {
+                MessageBox.Show("Таблица пуста или не существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+                Microsoft.Office.Interop.Word.Application wordApp = new Microsoft.Office.Interop.Word.Application();
+                Microsoft.Office.Interop.Word.Document doc = wordApp.Documents.Add();
+                int rows = dataGridView.Rows.Count;
+                int columns = dataGridView.Columns.Count;
+                Microsoft.Office.Interop.Word.Table wordTable = doc.Tables.Add(doc.Content, rows + 1, columns);
+                wordTable.Borders.Enable = 1;
+                wordTable.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
+                for (int col = 0; col < columns; col++)
+                {
+                    wordTable.Cell(1, col + 1).Range.Text = dataGridView.Columns[col].HeaderText;
+                    wordTable.Cell(1, col + 1).Range.Bold = 1;
+                    wordTable.Cell(1, col + 1).Shading.BackgroundPatternColor = WdColor.wdColorGray25;
+                }
+                for (int row = 0; row < rows; row++)
+                {
+                    for (int col = 0; col < columns; col++)
+                    {
+                        object value = dataGridView.Rows[row].Cells[col].Value;
+                        wordTable.Cell(row + 2, col + 1).Range.Text = value != null ? value.ToString() : "";
+                    }
+                }
+                doc.SaveAs2(filePath);
+                wordApp.Visible = true;
+                MessageBox.Show("Данные успешно экспортированы в Word!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public static void ExportDataGridViewToExcel(DataGridView dataGridView, string filePath)
+        {
+            if (dataGridView == null || dataGridView.Rows.Count == 0)
+            {
+                MessageBox.Show("Таблица пуста или не существует!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Microsoft.Office.Interop.Excel.Application excelApp = null;
+            Workbook workbook = null;
+
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+                excelApp = new Microsoft.Office.Interop.Excel.Application();
+                workbook = excelApp.Workbooks.Add();
+                Worksheet worksheet = workbook.ActiveSheet;
+                for (int col = 0; col < dataGridView.Columns.Count; col++)
+                {
+                    worksheet.Cells[1, col + 1] = dataGridView.Columns[col].HeaderText;
+                    Microsoft.Office.Interop.Excel.Range headerCell = worksheet.Cells[1, col + 1];
+                    headerCell.Font.Bold = true;
+                    headerCell.Interior.Color = Microsoft.Office.Interop.Excel.XlRgbColor.rgbLightGray;
+                    headerCell.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+                }
+                for (int row = 0; row < dataGridView.Rows.Count; row++)
+                {
+                    for (int col = 0; col < dataGridView.Columns.Count; col++)
+                    {
+                        object value = dataGridView.Rows[row].Cells[col].Value;
+                        worksheet.Cells[row + 2, col + 1] = value != null ? value.ToString() : "";
+                    }
+                }
+                worksheet.Columns.AutoFit();
+                workbook.SaveAs(filePath, XlFileFormat.xlWorkbookDefault);
+                excelApp.Visible = true;
+                MessageBox.Show("Данные успешно экспортированы в Excel!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public static void ExecuteQuery(string query, DataGridView dataGridView = null)
@@ -55,7 +185,6 @@ namespace TourismDB
                 }
             }
         }
-
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             HideAllDataGrids();
@@ -286,6 +415,29 @@ namespace TourismDB
         private void buttonUpdateTours_Click(object sender, EventArgs e)
         {
             GoForm(new FormUpdateTours());
+        }
+
+        private void buttonWordClients_Click(object sender, EventArgs e)
+        {
+            string path = "Clients.docx";
+            ExportDataGridViewToWord(dataGridViewClients, path);
+        }
+
+        private void buttonWordTours_Click(object sender, EventArgs e)
+        {
+            string path = "Tours.docx";
+            ExportDataGridViewToWord(dataGridViewTours, path);
+        }
+
+        private void buttonExcelClients_Click(object sender, EventArgs e)
+        {
+            string path = "Clients.xlsx";
+            ExportDataGridViewToExcel(dataGridViewClients, path);
+        }
+
+        private void buttonPDFClients_Click(object sender, EventArgs e)
+        {
+            ExportToPdf(dataGridViewClients);
         }
     }
 }
