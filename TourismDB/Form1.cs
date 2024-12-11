@@ -46,7 +46,6 @@ namespace TourismDB
                         else
                         {
                             int rowsAffected = command.ExecuteNonQuery();
-                            MessageBox.Show($"Запрос выполнен. Затронуто строк: {rowsAffected}");
                         }
                     }
                 }
@@ -221,21 +220,16 @@ namespace TourismDB
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonAddClients_Click(object sender, EventArgs e)
         {
-            AddClientsForm form = new AddClientsForm();
-            this.Hide();
-            form.Show();
+            GoForm(new AddClientsForm());
+        }
+        private void buttonUpdateClients_Click(object sender, EventArgs e)
+        {
+            GoForm(new FormUpdateClients());
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            FormUpdateClients form = new FormUpdateClients();
-            this.Hide();
-            form.Show();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
+        private void buttonDeleteClients_Click(object sender, EventArgs e)
         {
             if (dataGridViewClients.SelectedRows.Count == 0)
             {
@@ -255,6 +249,43 @@ namespace TourismDB
                 MessageBox.Show("Клиент успешно удалён.");
             }
             ExecuteQuery("SELECT * FROM Clients", dataGridViewClients);
+        }
+
+        private void buttonAddTours_Click(object sender, EventArgs e)
+        {
+            GoForm(new AddToursForm());       
+        }
+        private void GoForm(Form form)
+        {
+            this.Hide();
+            form.Show();
+        }
+
+        private void buttonDeleteTours_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewTours.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Выберите тур для удаления.");
+                return;
+            }
+            DataGridViewRow selectedRow = dataGridViewTours.SelectedRows[0];
+            if (selectedRow.Cells["TourID"].Value == null || !int.TryParse(selectedRow.Cells["TourID"].Value.ToString(), out int tourId))
+            {
+                MessageBox.Show("Не удалось определить ID тура.");
+                return;
+            }
+            var result = MessageBox.Show($"Вы уверены, что хотите удалить тур с ID {tourId}?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                ExecuteQuery($"DELETE FROM Tours WHERE TourID = {tourId}");
+                MessageBox.Show("Тур успешно удалён.");
+            }
+            ExecuteQuery("SELECT * FROM Tours", dataGridViewTours);
+        }
+
+        private void buttonUpdateTours_Click(object sender, EventArgs e)
+        {
+            GoForm(new FormUpdateTours());
         }
     }
 }

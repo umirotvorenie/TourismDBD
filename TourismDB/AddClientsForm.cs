@@ -24,15 +24,19 @@ namespace TourismDB
         }
         private void buttonAddClients_Click(object sender, EventArgs e)
         {
-            if (textBoxFirstName.Text == "" || textBoxLastName.Text == "") 
+            if (textBoxFirstName.Text == "" || textBoxLastName.Text == "" || textBoxPassportNumber.Text == "" || textBoxEmail.Text == "") 
             {
-                MessageBox.Show($"Не удалось добавить пользователя, строки не могут быть пустыми");
+                MessageBox.Show($"Не удалось добавить пользователя. Введите обязательные поля для ввода: Имя, Фамилия, Почта, Пасспорт");
             }
             else
             {
                 Form1.ExecuteQuery($"INSERT INTO Clients(FirstName, LastName, DateOfBirth, Email, PhoneNumber, Address, PassportNumber) " +
                 $"VALUES ('{textBoxFirstName.Text}', '{textBoxLastName.Text}', '{textBoxDateOfBirth.Text}', '{textBoxEmail.Text}', '{textBoxPhoneNumber.Text}', '{textBoxAddress.Text}', '{textBoxPassportNumber.Text}')");
+                MessageBox.Show("Клиент успешно добавлен");
+                ClearFields();
+
             }
+            
         }
         private void ClearFields()
         {

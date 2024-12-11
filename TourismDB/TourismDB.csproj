@@ -42,7 +42,9 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.5.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.119.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
@@ -71,6 +73,12 @@
     <Compile Include="AddClientsForm.Designer.cs">
       <DependentUpon>AddClientsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddToursForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddToursForm.Designer.cs">
+      <DependentUpon>AddToursForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,16 +91,28 @@
     <Compile Include="FormUpdateClients.Designer.cs">
       <DependentUpon>FormUpdateClients.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUpdateTours.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUpdateTours.Designer.cs">
+      <DependentUpon>FormUpdateTours.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AddClientsForm.resx">
       <DependentUpon>AddClientsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddToursForm.resx">
+      <DependentUpon>AddToursForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUpdateClients.resx">
       <DependentUpon>FormUpdateClients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUpdateTours.resx">
+      <DependentUpon>FormUpdateTours.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
