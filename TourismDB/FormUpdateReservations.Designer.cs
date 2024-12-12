@@ -196,6 +196,9 @@
             // 
             this.comboBoxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.comboBoxStatus.FormattingEnabled = true;
+            this.comboBoxStatus.Items.AddRange(new object[] {
+            "Выполняется",
+            "Подтвержден"});
             this.comboBoxStatus.Location = new System.Drawing.Point(224, 263);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new System.Drawing.Size(166, 32);

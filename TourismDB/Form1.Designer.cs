@@ -468,6 +468,7 @@
             this.buttonExcelPayments.TabIndex = 25;
             this.buttonExcelPayments.Text = "Вывести в Excel";
             this.buttonExcelPayments.UseVisualStyleBackColor = true;
+            this.buttonExcelPayments.Click += new System.EventHandler(this.buttonExcelPayments_Click);
             // 
             // buttonPDFPayments
             // 
@@ -477,6 +478,7 @@
             this.buttonPDFPayments.TabIndex = 24;
             this.buttonPDFPayments.Text = "Вывести в PDF";
             this.buttonPDFPayments.UseVisualStyleBackColor = true;
+            this.buttonPDFPayments.Click += new System.EventHandler(this.buttonPDFPayments_Click);
             // 
             // buttonWordPayments
             // 
@@ -486,6 +488,7 @@
             this.buttonWordPayments.TabIndex = 23;
             this.buttonWordPayments.Text = "Вывести в Word";
             this.buttonWordPayments.UseVisualStyleBackColor = true;
+            this.buttonWordPayments.Click += new System.EventHandler(this.buttonWordPayments_Click);
             // 
             // buttonSeletePayments
             // 
@@ -495,6 +498,7 @@
             this.buttonSeletePayments.TabIndex = 22;
             this.buttonSeletePayments.Text = "Удалить запись";
             this.buttonSeletePayments.UseVisualStyleBackColor = true;
+            this.buttonSeletePayments.Click += new System.EventHandler(this.buttonSeletePayments_Click);
             // 
             // buttonUpdatePayments
             // 
@@ -504,6 +508,7 @@
             this.buttonUpdatePayments.TabIndex = 21;
             this.buttonUpdatePayments.Text = "Обновить данные";
             this.buttonUpdatePayments.UseVisualStyleBackColor = true;
+            this.buttonUpdatePayments.Click += new System.EventHandler(this.buttonUpdatePayments_Click);
             // 
             // buttonAddPayments
             // 
@@ -513,6 +518,7 @@
             this.buttonAddPayments.TabIndex = 20;
             this.buttonAddPayments.Text = "Добавить новую запись";
             this.buttonAddPayments.UseVisualStyleBackColor = true;
+            this.buttonAddPayments.Click += new System.EventHandler(this.buttonAddPayments_Click);
             // 
             // label4
             // 
@@ -535,6 +541,7 @@
             // 
             // dataGridViewPayments
             // 
+            this.dataGridViewPayments.AllowUserToAddRows = false;
             this.dataGridViewPayments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPayments.Location = new System.Drawing.Point(31, 66);
             this.dataGridViewPayments.Margin = new System.Windows.Forms.Padding(2);
@@ -656,6 +663,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

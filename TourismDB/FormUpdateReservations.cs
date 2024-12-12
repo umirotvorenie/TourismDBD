@@ -7,19 +7,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace TourismDB
 {
     public partial class FormUpdateReservations : Form
     {
-        private bool isEmpty = false;
+        public List<System.Windows.Forms.TextBox> textReserv = new List<System.Windows.Forms.TextBox>();
+        private string status = "";
+
         public FormUpdateReservations()
         {
             InitializeComponent();
+            comboBoxStatus.SelectedIndex = 0;
+            textReserv.Add(textBoxClientID);
+            textReserv.Add(textBoxTourID);
+            textReserv.Add(textBoxReservationDate);
+            textReserv.Add(textBoxSeatsReserved);
+            comboBoxStatus.Enabled = false;
+            Form1.SetReadOnly(textReserv, true);
         }
+
         private void LoadDataReservation_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrWhiteSpace(textBoxIDReservation.Text))
             {
                 MessageBox.Show("Введите ID брони.");
@@ -34,7 +44,8 @@ namespace TourismDB
                 textBoxReservationDate.Text = row["ReservationDate"].ToString();
                 textBoxSeatsReserved.Text = row["SeatsReserved"].ToString();
                 comboBoxStatus.Text = row["Status"].ToString();
-                isEmpty = true;
+                Form1.SetReadOnly(textReserv, false);
+                comboBoxStatus.Enabled = true;
             }
             else
             {
@@ -42,6 +53,7 @@ namespace TourismDB
                 ClearFields();
             }
         }
+
         private void ClearFields()
         {
             textBoxIDReservation.Text = "";
@@ -49,58 +61,62 @@ namespace TourismDB
             textBoxTourID.Text = "";
             textBoxReservationDate.Text = "";
             textBoxSeatsReserved.Text = "";
+            Form1.SetReadOnly(textReserv, true);
+            comboBoxStatus.Enabled = false;
         }
 
         private void buttonAddReservation_Click(object sender, EventArgs e)
         {
-            if (isEmpty)
+            if (textBoxClientID.Text == "" || textBoxTourID.Text == "" || textBoxReservationDate.Text == "" || textBoxSeatsReserved.Text == "")
             {
-                if (textBoxClientID.Text == "" || textBoxTourID.Text == "" || textBoxReservationDate.Text == "" || textBoxSeatsReserved.Text == "")
-                {
-                    MessageBox.Show("Обязательные поля не могут быть пустыми: ID Клиента, ID Тура, Дата бронирования, Мест забронировано.");
-                    return;
-                }
-                int seatsReserved;
-                if (!int.TryParse(textBoxSeatsReserved.Text, out seatsReserved))
-                {
-                    MessageBox.Show("SeatsReserved должен быть числом.");
-                    return;
-                }
-                Form1.ExecuteQuery($"SELECT 1 FROM Clients WHERE ClientID = {textBoxClientID.Text}", null);
-                if (Form1.currentDataTable.Rows.Count == 0)
-                {
-                    MessageBox.Show($"Клиент с ID {textBoxClientID.Text} не найден.");
-                    return;
-                }
-                Form1.ExecuteQuery($"SELECT 1 FROM Tours WHERE TourID = {textBoxTourID.Text}", null);
-                if (Form1.currentDataTable.Rows.Count == 0)
-                {
-                    MessageBox.Show($"Тур с ID {textBoxTourID.Text} не найден.");
-                    return;
-                }
-                Form1.ExecuteQuery($"SELECT AvailableSeats FROM Tours WHERE TourID = {textBoxTourID.Text}", null);
-                int availableSeats = Convert.ToInt32(Form1.currentDataTable.Rows[0]["AvailableSeats"]);
-                if (availableSeats < seatsReserved)
-                {
-                    MessageBox.Show("Недостаточно доступных мест для бронирования.");
-                    return;
-                }
-                string reservId = textBoxIDReservation.Text;
-                Form1.ExecuteQuery($"UPDATE Reservation SET ClientID = '{textBoxClientID.Text}', TourID = '{textBoxTourID.Text}', ReservationDate = '{textBoxReservationDate.Text}', " +
-                $"SeatsReserved = '{textBoxSeatsReserved.Text}', Status = '{comboBoxStatus.Text}' WHERE ReservationID = '{textBoxIDReservation.Text}'");
-                MessageBox.Show("Операция прошла успешно");
+                MessageBox.Show("Обязательные поля не могут быть пустыми: ID Клиента, ID Тура, Дата бронирования, Мест забронировано.");
+                return;
             }
-            else
+            int seatsReserved;
+            if (!int.TryParse(textBoxSeatsReserved.Text, out seatsReserved))
             {
-                MessageBox.Show("Операция не прошла");
+                MessageBox.Show("SeatsReserved должен быть числом.");
+                return;
             }
+            Form1.ExecuteQuery($"SELECT 1 FROM Clients WHERE ClientID = {textBoxClientID.Text}", null);
+            if (Form1.currentDataTable.Rows.Count == 0)
+            {
+                MessageBox.Show($"Клиент с ID {textBoxClientID.Text} не найден.");
+                return;
+            }
+            Form1.ExecuteQuery($"SELECT 1 FROM Tours WHERE TourID = {textBoxTourID.Text}", null);
+            if (Form1.currentDataTable.Rows.Count == 0)
+            {
+                MessageBox.Show($"Тур с ID {textBoxTourID.Text} не найден.");
+                return;
+            }
+            switch (comboBoxStatus.Text)
+            {
+                case "Выполняется":
+                    status = "Pending";
+                    break;
 
+                case "Подтвержден":
+                    status = "Confirmed";
+                    break;
+            }
+            Form1.ExecuteQuery($"SELECT AvailableSeats FROM Tours WHERE TourID = {textBoxTourID.Text}", null);
+            int availableSeats = Convert.ToInt32(Form1.currentDataTable.Rows[0]["AvailableSeats"]);
+            if (availableSeats < seatsReserved)
+            {
+                MessageBox.Show("Недостаточно доступных мест для бронирования.");
+                return;
+            }
+            string reservId = textBoxIDReservation.Text;
+            Form1.ExecuteQuery($"UPDATE Reservation SET ClientID = '{textBoxClientID.Text}', TourID = '{textBoxTourID.Text}', ReservationDate = '{textBoxReservationDate.Text}', " +
+            $"SeatsReserved = '{textBoxSeatsReserved.Text}', Status = '{status}' WHERE ReservationID = '{textBoxIDReservation.Text}'");
+            MessageBox.Show("Операция прошла успешно");
+            ClearFields();
         }
+
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            Form1 form = new Form1();   
-            this.Hide();
-            form.Show();
+            Form1.GoForm1(this);
         }
 
         private void buttonClear_Click(object sender, EventArgs e)

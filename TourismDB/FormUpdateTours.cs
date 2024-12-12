@@ -10,13 +10,21 @@ using System.Windows.Forms;
 
 namespace TourismDB
 {
-    
     public partial class FormUpdateTours : Form
     {
-        private bool isEmpty = false;
+        public List<System.Windows.Forms.TextBox> textTour = new List<System.Windows.Forms.TextBox>();
+
         public FormUpdateTours()
         {
             InitializeComponent();
+            textTour.Add(textBoxTourName);
+            textTour.Add(textBoxDescription);
+            textTour.Add(textBoxStartDate);
+            textTour.Add(textBoxEndDate);
+            textTour.Add(textBoxPrice);
+            textTour.Add(textBoxDestination);
+            textTour.Add(textBoxAvailableSeats);
+            Form1.SetReadOnly(textTour, true);
         }
 
         private void LoadDataClient_Click(object sender, EventArgs e)
@@ -43,7 +51,7 @@ namespace TourismDB
                 textBoxPrice.Text = row["Price"].ToString();
                 textBoxDestination.Text = row["Destination"].ToString();
                 textBoxAvailableSeats.Text = row["AvailableSeats"].ToString();
-                isEmpty = true;
+                Form1.SetReadOnly(textTour, false);
             }
             else
             {
@@ -51,8 +59,10 @@ namespace TourismDB
                 ClearFields();
             }
         }
+
         private void ClearFields()
         {
+            textBoxIDTour.Text = "";
             textBoxTourName.Text = "";
             textBoxDescription.Text = "";
             textBoxStartDate.Text = "";
@@ -60,32 +70,27 @@ namespace TourismDB
             textBoxPrice.Text = "";
             textBoxDestination.Text = "";
             textBoxAvailableSeats.Text = "";
+            Form1.SetReadOnly(textTour, true);
         }
 
         private void buttonAddTours_Click(object sender, EventArgs e)
         {
-            if (isEmpty)
+            if (textBoxIDTour.Text == "")
             {
-                if (textBoxIDTour.Text == "")
-                {
-                    MessageBox.Show("Введите ID тура");
-                    return;
-                }
-                if (textBoxTourName.Text == "" || textBoxStartDate.Text == "" || textBoxEndDate.Text == "" || textBoxPrice.Text == "")
-                {
-                    MessageBox.Show("Обязательные не поля не могут быть пустыми : Название тура, Дата начала, Дата окончания, Цена");
-                    return;
-                }
-                string clientId = textBoxIDTour.Text;
-                Form1.ExecuteQuery($"UPDATE Tours SET TourName = '{textBoxTourName.Text}', Description = '{textBoxDescription.Text}', StartDate = '{textBoxStartDate.Text}', " +
-                $"EndDate = '{textBoxEndDate.Text}', Price = '{textBoxPrice.Text}', Destination = '{textBoxDestination.Text}', " +
-                $"AvailableSeats = '{textBoxAvailableSeats.Text}' WHERE TourID = {clientId}");
-                MessageBox.Show("Операция прошла успешно");
+                MessageBox.Show("Введите ID тура");
+                return;
             }
-            else
+            if (textBoxTourName.Text == "" || textBoxStartDate.Text == "" || textBoxEndDate.Text == "" || textBoxPrice.Text == "")
             {
-                MessageBox.Show("Операция не прошла");
+                MessageBox.Show("Обязательные не поля не могут быть пустыми : Название тура, Дата начала, Дата окончания, Цена");
+                return;
             }
+            string clientId = textBoxIDTour.Text;
+            Form1.ExecuteQuery($"UPDATE Tours SET TourName = '{textBoxTourName.Text}', Description = '{textBoxDescription.Text}', StartDate = '{textBoxStartDate.Text}', " +
+            $"EndDate = '{textBoxEndDate.Text}', Price = '{textBoxPrice.Text}', Destination = '{textBoxDestination.Text}', " +
+            $"AvailableSeats = '{textBoxAvailableSeats.Text}' WHERE TourID = {clientId}");
+            MessageBox.Show("Операция прошла успешно");
+            ClearFields();
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
@@ -95,9 +100,7 @@ namespace TourismDB
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
-            this.Hide();
-            form1.Show();
+            Form1.GoForm1(this);
         }
     }
 }

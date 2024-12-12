@@ -156,6 +156,12 @@
     <Compile Include="AddClientsForm.Designer.cs">
       <DependentUpon>AddClientsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddPaymentsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddPaymentsForm.Designer.cs">
+      <DependentUpon>AddPaymentsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="AddReservationsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +186,12 @@
     <Compile Include="FormUpdateClients.Designer.cs">
       <DependentUpon>FormUpdateClients.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormUpdatePayments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormUpdatePayments.Designer.cs">
+      <DependentUpon>FormUpdatePayments.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormUpdateReservations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +209,9 @@
     <EmbeddedResource Include="AddClientsForm.resx">
       <DependentUpon>AddClientsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AddPaymentsForm.resx">
+      <DependentUpon>AddPaymentsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AddReservationsForm.resx">
       <DependentUpon>AddReservationsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -208,6 +223,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormUpdateClients.resx">
       <DependentUpon>FormUpdateClients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormUpdatePayments.resx">
+      <DependentUpon>FormUpdatePayments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormUpdateReservations.resx">
       <DependentUpon>FormUpdateReservations.cs</DependentUpon>

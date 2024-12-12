@@ -81,9 +81,7 @@ namespace TourismDB
         }
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            Form1 form = new Form1();
-            this.Hide();
-            form.Show();
+            Form1.GoForm1(this);
         }
         private void buttonClear_Click(object sender, EventArgs e)
         {

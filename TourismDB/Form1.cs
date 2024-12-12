@@ -11,8 +11,8 @@ using iText.Kernel.Pdf;
 using iText.Kernel.Font;
 using iText.IO.Font;
 using System.Diagnostics;
-
-
+using System.Runtime.CompilerServices;
+using System.Collections.Generic;
 
 namespace TourismDB
 {
@@ -20,11 +20,11 @@ namespace TourismDB
     {
         public static string connectionString = @"Data Source=TourismDB.db;Version=3;";
         public static DataTable currentDataTable = new DataTable();
+
         public Form1()
         {
             InitializeComponent();
             ExecuteQuery("SELECT * FROM Clients", dataGridViewClients);
-
         }
 
         public void ExportToPdf(DataGridView dataGridView, string filePath)
@@ -52,7 +52,7 @@ namespace TourismDB
                 }
                 pdfDoc.Add(table);
                 pdfDoc.Close();
-                MessageBox.Show("PDF успешно экспортирован.");               
+                MessageBox.Show("PDF успешно экспортирован.");
             }
             catch (Exception ex)
             {
@@ -104,6 +104,7 @@ namespace TourismDB
                 MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         public static void ExportDataGridViewToExcel(DataGridView dataGridView, string filePath)
         {
             if (dataGridView == null || dataGridView.Rows.Count == 0)
@@ -150,6 +151,7 @@ namespace TourismDB
                 MessageBox.Show($"Произошла ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         public static void ExecuteQuery(string query, DataGridView dataGridView = null)
         {
             using (SQLiteConnection conn = new SQLiteConnection(connectionString))
@@ -184,6 +186,7 @@ namespace TourismDB
                 }
             }
         }
+
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             HideAllDataGrids();
@@ -193,24 +196,29 @@ namespace TourismDB
                     ExecuteQuery("SELECT * FROM Clients", dataGridViewClients);
                     dataGridViewClients.Visible = true;
                     break;
+
                 case 1:
                     ExecuteQuery("SELECT * FROM Tours", dataGridViewTours);
                     dataGridViewTours.Visible = true;
                     break;
+
                 case 2:
                     ExecuteQuery("SELECT * FROM Reservation", dataGridViewReservations);
                     dataGridViewReservations.Visible = true;
                     break;
+
                 case 3:
                     ExecuteQuery("SELECT * FROM Payments", dataGridViewPayments);
                     dataGridViewPayments.Visible = true;
                     break;
+
                 case 4:
                     ExecuteQuery("SELECT * FROM Staff", dataGridViewStaff);
                     dataGridViewStaff.Visible = true;
                     break;
             }
         }
+
         private void HideAllDataGrids()
         {
             dataGridViewClients.Visible = false;
@@ -219,8 +227,9 @@ namespace TourismDB
             dataGridViewPayments.Visible = false;
             dataGridViewStaff.Visible = false;
         }
+
         private void FilterData(string filterText, DataGridView dataGridView)
-        {             
+        {
             try
             {
                 var filteredRows = currentDataTable.AsEnumerable().Where(row => currentDataTable.Columns.Cast<DataColumn>().Any(col => row[col.ColumnName].ToString().IndexOf(filterText, StringComparison.OrdinalIgnoreCase) >= 0));
@@ -232,6 +241,7 @@ namespace TourismDB
                 MessageBox.Show($"Ошибка при фильтрации данных: {ex.Message}");
             }
         }
+
         private static void SetColumnHeaders(DataGridView dataGridView)
         {
             if (dataGridView.Columns.Count > 0)
@@ -248,14 +258,16 @@ namespace TourismDB
                         dataGridView.Columns["Address"].HeaderText = "Адрес";
                         dataGridView.Columns["PassportNumber"].HeaderText = "Пасспорт";
                         break;
+
                     case "dataGridViewPayments":
                         dataGridView.Columns["PaymentID"].HeaderText = "ID Платежа";
                         dataGridView.Columns["ReservationID"].HeaderText = "ID Бронирования";
                         dataGridView.Columns["PaymentDate"].HeaderText = "Дата оплаты";
-                        dataGridView.Columns["Amount"].HeaderText = "Количество";
+                        dataGridView.Columns["Amount"].HeaderText = "Сумма";
                         dataGridView.Columns["PaymentMethod"].HeaderText = "Способ оплаты";
                         dataGridView.Columns["PaymentStatus"].HeaderText = "Статус оплаты";
                         break;
+
                     case "dataGridViewReservations":
                         dataGridView.Columns["ReservationID"].HeaderText = "ID Бронирования";
                         dataGridView.Columns["ClientID"].HeaderText = "ID Клиента";
@@ -264,6 +276,7 @@ namespace TourismDB
                         dataGridView.Columns["SeatsReserved"].HeaderText = "Мест забронировано";
                         dataGridView.Columns["Status"].HeaderText = "Статус";
                         break;
+
                     case "dataGridViewStaff":
                         dataGridView.Columns["StaffID"].HeaderText = "ID Сотрудника";
                         dataGridView.Columns["FirstName"].HeaderText = "Имя";
@@ -274,6 +287,7 @@ namespace TourismDB
                         dataGridView.Columns["HireDate"].HeaderText = "Дата приема на работу";
                         dataGridView.Columns["Salary"].HeaderText = "Зарплата";
                         break;
+
                     case "dataGridViewTours":
                         dataGridView.Columns["TourID"].HeaderText = "ID Тура";
                         dataGridView.Columns["TourName"].HeaderText = "Название тура";
@@ -287,6 +301,7 @@ namespace TourismDB
                 }
             }
         }
+
         private void textBoxSearchClients_TextChanged(object sender, EventArgs e)
         {
             try
@@ -351,6 +366,7 @@ namespace TourismDB
         {
             GoForm(new AddClientsForm());
         }
+
         private void buttonUpdateClients_Click(object sender, EventArgs e)
         {
             GoForm(new FormUpdateClients());
@@ -386,8 +402,9 @@ namespace TourismDB
 
         private void buttonAddTours_Click(object sender, EventArgs e)
         {
-            GoForm(new AddToursForm());       
+            GoForm(new AddToursForm());
         }
+
         private void GoForm(Form form)
         {
             this.Hide();
@@ -415,12 +432,13 @@ namespace TourismDB
             }
             var result = MessageBox.Show($"Вы уверены, что хотите удалить тур с ID {tourId}?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
-            {             
+            {
                 ExecuteQuery($"DELETE FROM Tours WHERE TourID = {tourId}");
                 MessageBox.Show("Тур успешно удалён.");
             }
             ExecuteQuery("SELECT * FROM Tours", dataGridViewTours);
         }
+
         private void buttonDeleteReservations_Click(object sender, EventArgs e)
         {
             if (dataGridViewReservations.SelectedRows.Count == 0)
@@ -434,6 +452,12 @@ namespace TourismDB
                 MessageBox.Show("Не удалось определить ID брони.");
                 return;
             }
+            ExecuteQuery($"SELECT COUNT(*) AS PaymentsCount FROM Payments WHERE ReservationID = {reservId}");
+            if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0 && int.TryParse(Form1.currentDataTable.Rows[0]["PaymentsCount"].ToString(), out int paymentsCount) && paymentsCount > 0)
+            {
+                MessageBox.Show("Невозможно удалить бронь, так как она уже оплачена.");
+                return;
+            }
             var result = MessageBox.Show($"Вы уверены, что хотите удалить бронь с ID {reservId}?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
@@ -443,57 +467,106 @@ namespace TourismDB
             ExecuteQuery("SELECT * FROM Reservation", dataGridViewReservations);
         }
 
+        private void buttonSeletePayments_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewPayments.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Выберите платеж для удаления.");
+                return;
+            }
+            DataGridViewRow selectedRow = dataGridViewPayments.SelectedRows[0];
+            if (selectedRow.Cells["PaymentID"].Value == null || !int.TryParse(selectedRow.Cells["PaymentID"].Value.ToString(), out int paymentId))
+            {
+                MessageBox.Show("Не удалось определить ID платежа.");
+                return;
+            }
+            var result = MessageBox.Show($"Вы уверены, что хотите удалить платеж с ID {paymentId}?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                ExecuteQuery($"DELETE FROM Payments WHERE PaymentID = {paymentId}");
+                MessageBox.Show("Платеж успешно удалён.");
+            }
+            ExecuteQuery("SELECT * FROM Payments", dataGridViewPayments);
+        }
+
         private void buttonUpdateTours_Click(object sender, EventArgs e)
         {
             GoForm(new FormUpdateTours());
         }
+
         //Word
         private void buttonWordClients_Click(object sender, EventArgs e)
         {
             string path = "Clients.docx";
             ExportDataGridViewToWord(dataGridViewClients, path);
         }
+
         private void buttonWordTours_Click(object sender, EventArgs e)
         {
             string path = "Tours.docx";
             ExportDataGridViewToWord(dataGridViewTours, path);
         }
+
         private void buttonWordReservations_Click(object sender, EventArgs e)
         {
             string path = "Reservations.docx";
             ExportDataGridViewToWord(dataGridViewReservations, path);
         }
+
+        private void buttonWordPayments_Click(object sender, EventArgs e)
+        {
+            string path = "Payments.docx";
+            ExportDataGridViewToWord(dataGridViewPayments, path);
+        }
+
         //Excel
         private void buttonExcelClients_Click(object sender, EventArgs e)
         {
             string path = "Clients.xlsx";
             ExportDataGridViewToExcel(dataGridViewClients, path);
         }
+
         private void buttonExcelTours_Click(object sender, EventArgs e)
         {
             string path = "Tours.xlsx";
             ExportDataGridViewToExcel(dataGridViewTours, path);
         }
+
         private void buttonExcelReservations_Click(object sender, EventArgs e)
         {
             string path = "Reservations.xlsx";
             ExportDataGridViewToExcel(dataGridViewReservations, path);
         }
+
+        private void buttonExcelPayments_Click(object sender, EventArgs e)
+        {
+            string path = "Payments.xlsx";
+            ExportDataGridViewToExcel(dataGridViewPayments, path);
+        }
+
         //pdf
         private void buttonPDFClients_Click(object sender, EventArgs e)
         {
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Clients.pdf");
             ExportToPdf(dataGridViewClients, path);
         }
+
         private void buttonPDFTours_Click(object sender, EventArgs e)
         {
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Tours.pdf");
             ExportToPdf(dataGridViewTours, path);
         }
+
         private void buttonPDFRevervations_Click(object sender, EventArgs e)
         {
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Reservations.pdf");
             ExportToPdf(dataGridViewReservations, path);
+        }
+
+        private void buttonPDFPayments_Click(object sender, EventArgs e)
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Payments.pdf");
+            ExportToPdf(dataGridViewPayments, path);
         }
 
         private void buttonAddReservations_Click(object sender, EventArgs e)
@@ -506,6 +579,34 @@ namespace TourismDB
             GoForm(new FormUpdateReservations());
         }
 
+        private void buttonAddPayments_Click(object sender, EventArgs e)
+        {
+            GoForm(new AddPaymentsForm());
+        }
 
+        private void buttonUpdatePayments_Click(object sender, EventArgs e)
+        {
+            GoForm(new FormUpdatePayments());
+        }
+
+        public static void GoForm1(Form currentForm)
+        {
+            Form1 form = new Form1();
+            currentForm.Hide();
+            form.Show();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            System.Windows.Forms.Application.Exit();
+        }
+
+        public static void SetReadOnly(IEnumerable<System.Windows.Forms.TextBox> textBoxes, bool isReadOnly)
+        {
+            foreach (var textBox in textBoxes)
+            {
+                textBox.ReadOnly = isReadOnly;
+            }
+        }
     }
 }

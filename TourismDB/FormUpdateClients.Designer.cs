@@ -123,6 +123,7 @@
             this.textBoxFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.textBoxFirstName.Location = new System.Drawing.Point(197, 88);
             this.textBoxFirstName.Name = "textBoxFirstName";
+            this.textBoxFirstName.ReadOnly = true;
             this.textBoxFirstName.Size = new System.Drawing.Size(397, 30);
             this.textBoxFirstName.TabIndex = 9;
             // 
