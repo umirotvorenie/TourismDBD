@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TourismDB
@@ -16,13 +9,15 @@ namespace TourismDB
         {
             InitializeComponent();
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             Form1.GoForm1(this);
         }
+
         private void buttonAddClients_Click(object sender, EventArgs e)
         {
-            if (textBoxFirstName.Text == "" || textBoxLastName.Text == "" || textBoxPassportNumber.Text == "" || textBoxEmail.Text == "") 
+            if (textBoxFirstName.Text == "" || textBoxLastName.Text == "" || textBoxPassportNumber.Text == "" || textBoxEmail.Text == "")
             {
                 MessageBox.Show($"Не удалось добавить пользователя. Введите обязательные поля для ввода: Имя, Фамилия, Почта, Пасспорт");
             }
@@ -32,9 +27,9 @@ namespace TourismDB
                 $"VALUES ('{textBoxFirstName.Text}', '{textBoxLastName.Text}', '{textBoxDateOfBirth.Text}', '{textBoxEmail.Text}', '{textBoxPhoneNumber.Text}', '{textBoxAddress.Text}', '{textBoxPassportNumber.Text}')");
                 MessageBox.Show("Клиент успешно добавлен");
                 ClearFields();
-
-            }         
+            }
         }
+
         private void ClearFields()
         {
             textBoxFirstName.Text = "";
@@ -45,9 +40,15 @@ namespace TourismDB
             textBoxAddress.Text = "";
             textBoxPassportNumber.Text = "";
         }
+
         private void Clear_Click(object sender, EventArgs e)
         {
             ClearFields();
+        }
+
+        private void AddClientsForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

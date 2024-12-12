@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace TourismDB
 {
     public partial class FormUpdateReservations : Form
     {
         public List<System.Windows.Forms.TextBox> textReserv = new List<System.Windows.Forms.TextBox>();
-        private string status = "";
 
         public FormUpdateReservations()
         {
@@ -90,16 +83,6 @@ namespace TourismDB
                 MessageBox.Show($"Тур с ID {textBoxTourID.Text} не найден.");
                 return;
             }
-            switch (comboBoxStatus.Text)
-            {
-                case "Выполняется":
-                    status = "Pending";
-                    break;
-
-                case "Подтвержден":
-                    status = "Confirmed";
-                    break;
-            }
             Form1.ExecuteQuery($"SELECT AvailableSeats FROM Tours WHERE TourID = {textBoxTourID.Text}", null);
             int availableSeats = Convert.ToInt32(Form1.currentDataTable.Rows[0]["AvailableSeats"]);
             if (availableSeats < seatsReserved)
@@ -109,7 +92,7 @@ namespace TourismDB
             }
             string reservId = textBoxIDReservation.Text;
             Form1.ExecuteQuery($"UPDATE Reservation SET ClientID = '{textBoxClientID.Text}', TourID = '{textBoxTourID.Text}', ReservationDate = '{textBoxReservationDate.Text}', " +
-            $"SeatsReserved = '{textBoxSeatsReserved.Text}', Status = '{status}' WHERE ReservationID = '{textBoxIDReservation.Text}'");
+            $"SeatsReserved = '{textBoxSeatsReserved.Text}', Status = '{comboBoxStatus.Text}' WHERE ReservationID = '{textBoxIDReservation.Text}'");
             MessageBox.Show("Операция прошла успешно");
             ClearFields();
         }
@@ -122,6 +105,11 @@ namespace TourismDB
         private void buttonClear_Click(object sender, EventArgs e)
         {
             ClearFields();
+        }
+
+        private void FormUpdateReservations_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

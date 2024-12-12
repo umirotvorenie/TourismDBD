@@ -1,18 +1,16 @@
-﻿using System;
+﻿using iText.IO.Font;
+using iText.Kernel.Font;
+using iText.Kernel.Pdf;
+using Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Interop.Word;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SQLite;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Data.SQLite;
-using Microsoft.Office.Interop.Word;
-using Microsoft.Office.Interop.Excel;
 using DataTable = System.Data.DataTable;
-using System.IO;
-using iText.Kernel.Pdf;
-using iText.Kernel.Font;
-using iText.IO.Font;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using System.Collections.Generic;
 
 namespace TourismDB
 {
@@ -519,6 +517,12 @@ namespace TourismDB
             ExportDataGridViewToWord(dataGridViewPayments, path);
         }
 
+        private void buttonWordStaff_Click(object sender, EventArgs e)
+        {
+            string path = "Staff.docx";
+            ExportDataGridViewToWord(dataGridViewStaff, path);
+        }
+
         //Excel
         private void buttonExcelClients_Click(object sender, EventArgs e)
         {
@@ -544,6 +548,12 @@ namespace TourismDB
             ExportDataGridViewToExcel(dataGridViewPayments, path);
         }
 
+        private void buttonExcelStaff_Click(object sender, EventArgs e)
+        {
+            string path = "Staff.xlsx";
+            ExportDataGridViewToExcel(dataGridViewStaff, path);
+        }
+
         //pdf
         private void buttonPDFClients_Click(object sender, EventArgs e)
         {
@@ -567,6 +577,12 @@ namespace TourismDB
         {
             string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Payments.pdf");
             ExportToPdf(dataGridViewPayments, path);
+        }
+
+        private void buttonPDFStaff_Click(object sender, EventArgs e)
+        {
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Staff.pdf");
+            ExportToPdf(dataGridViewStaff, path);
         }
 
         private void buttonAddReservations_Click(object sender, EventArgs e)
@@ -607,6 +623,16 @@ namespace TourismDB
             {
                 textBox.ReadOnly = isReadOnly;
             }
+        }
+
+        private void buttonAddStaff_Click(object sender, EventArgs e)
+        {
+            GoForm(new AddClientsForm());
+        }
+
+        private void buttonUpdateStaff_Click(object sender, EventArgs e)
+        {
+            GoForm(new FormUpdateStaff());
         }
     }
 }

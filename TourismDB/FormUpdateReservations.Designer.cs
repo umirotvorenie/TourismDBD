@@ -227,6 +227,7 @@
             this.Controls.Add(this.textBoxClientID);
             this.Name = "FormUpdateReservations";
             this.Text = "FormUpdateReservations";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormUpdateReservations_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

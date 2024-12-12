@@ -70,12 +70,12 @@
             this.textBoxSearchPayments = new System.Windows.Forms.TextBox();
             this.dataGridViewPayments = new System.Windows.Forms.DataGridView();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.buttonExcelStaff = new System.Windows.Forms.Button();
+            this.buttonPDFStaff = new System.Windows.Forms.Button();
+            this.buttonWordStaff = new System.Windows.Forms.Button();
+            this.buttonDeleteStaff = new System.Windows.Forms.Button();
+            this.buttonUpdateStaff = new System.Windows.Forms.Button();
+            this.buttonAddStaff = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxSearchStaff = new System.Windows.Forms.TextBox();
             this.dataGridViewStaff = new System.Windows.Forms.DataGridView();
@@ -553,12 +553,12 @@
             // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(this.button1);
-            this.tabPage5.Controls.Add(this.button2);
-            this.tabPage5.Controls.Add(this.button3);
-            this.tabPage5.Controls.Add(this.button4);
-            this.tabPage5.Controls.Add(this.button5);
-            this.tabPage5.Controls.Add(this.button6);
+            this.tabPage5.Controls.Add(this.buttonExcelStaff);
+            this.tabPage5.Controls.Add(this.buttonPDFStaff);
+            this.tabPage5.Controls.Add(this.buttonWordStaff);
+            this.tabPage5.Controls.Add(this.buttonDeleteStaff);
+            this.tabPage5.Controls.Add(this.buttonUpdateStaff);
+            this.tabPage5.Controls.Add(this.buttonAddStaff);
             this.tabPage5.Controls.Add(this.label5);
             this.tabPage5.Controls.Add(this.textBoxSearchStaff);
             this.tabPage5.Controls.Add(this.dataGridViewStaff);
@@ -570,59 +570,64 @@
             this.tabPage5.Text = "Сотрудники";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // buttonExcelStaff
             // 
-            this.button1.Location = new System.Drawing.Point(529, 393);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 46);
-            this.button1.TabIndex = 31;
-            this.button1.Text = "Вывести в Excel";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonExcelStaff.Location = new System.Drawing.Point(529, 393);
+            this.buttonExcelStaff.Name = "buttonExcelStaff";
+            this.buttonExcelStaff.Size = new System.Drawing.Size(106, 46);
+            this.buttonExcelStaff.TabIndex = 31;
+            this.buttonExcelStaff.Text = "Вывести в Excel";
+            this.buttonExcelStaff.UseVisualStyleBackColor = true;
+            this.buttonExcelStaff.Click += new System.EventHandler(this.buttonExcelStaff_Click);
             // 
-            // button2
+            // buttonPDFStaff
             // 
-            this.button2.Location = new System.Drawing.Point(641, 393);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 46);
-            this.button2.TabIndex = 30;
-            this.button2.Text = "Вывести в PDF";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonPDFStaff.Location = new System.Drawing.Point(641, 393);
+            this.buttonPDFStaff.Name = "buttonPDFStaff";
+            this.buttonPDFStaff.Size = new System.Drawing.Size(106, 46);
+            this.buttonPDFStaff.TabIndex = 30;
+            this.buttonPDFStaff.Text = "Вывести в PDF";
+            this.buttonPDFStaff.UseVisualStyleBackColor = true;
+            this.buttonPDFStaff.Click += new System.EventHandler(this.buttonPDFStaff_Click);
             // 
-            // button3
+            // buttonWordStaff
             // 
-            this.button3.Location = new System.Drawing.Point(417, 393);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(106, 46);
-            this.button3.TabIndex = 29;
-            this.button3.Text = "Вывести в Word";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonWordStaff.Location = new System.Drawing.Point(417, 393);
+            this.buttonWordStaff.Name = "buttonWordStaff";
+            this.buttonWordStaff.Size = new System.Drawing.Size(106, 46);
+            this.buttonWordStaff.TabIndex = 29;
+            this.buttonWordStaff.Text = "Вывести в Word";
+            this.buttonWordStaff.UseVisualStyleBackColor = true;
+            this.buttonWordStaff.Click += new System.EventHandler(this.buttonWordStaff_Click);
             // 
-            // button4
+            // buttonDeleteStaff
             // 
-            this.button4.Location = new System.Drawing.Point(255, 393);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(106, 46);
-            this.button4.TabIndex = 28;
-            this.button4.Text = "Удалить запись";
-            this.button4.UseVisualStyleBackColor = true;
+            this.buttonDeleteStaff.Location = new System.Drawing.Point(255, 393);
+            this.buttonDeleteStaff.Name = "buttonDeleteStaff";
+            this.buttonDeleteStaff.Size = new System.Drawing.Size(106, 46);
+            this.buttonDeleteStaff.TabIndex = 28;
+            this.buttonDeleteStaff.Text = "Удалить запись";
+            this.buttonDeleteStaff.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // buttonUpdateStaff
             // 
-            this.button5.Location = new System.Drawing.Point(143, 393);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(106, 46);
-            this.button5.TabIndex = 27;
-            this.button5.Text = "Обновить данные";
-            this.button5.UseVisualStyleBackColor = true;
+            this.buttonUpdateStaff.Location = new System.Drawing.Point(143, 393);
+            this.buttonUpdateStaff.Name = "buttonUpdateStaff";
+            this.buttonUpdateStaff.Size = new System.Drawing.Size(106, 46);
+            this.buttonUpdateStaff.TabIndex = 27;
+            this.buttonUpdateStaff.Text = "Обновить данные";
+            this.buttonUpdateStaff.UseVisualStyleBackColor = true;
+            this.buttonUpdateStaff.Click += new System.EventHandler(this.buttonUpdateStaff_Click);
             // 
-            // button6
+            // buttonAddStaff
             // 
-            this.button6.Location = new System.Drawing.Point(31, 393);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(106, 46);
-            this.button6.TabIndex = 26;
-            this.button6.Text = "Добавить новую запись";
-            this.button6.UseVisualStyleBackColor = true;
+            this.buttonAddStaff.Location = new System.Drawing.Point(31, 393);
+            this.buttonAddStaff.Name = "buttonAddStaff";
+            this.buttonAddStaff.Size = new System.Drawing.Size(106, 46);
+            this.buttonAddStaff.TabIndex = 26;
+            this.buttonAddStaff.Text = "Добавить новую запись";
+            this.buttonAddStaff.UseVisualStyleBackColor = true;
+            this.buttonAddStaff.Click += new System.EventHandler(this.buttonAddStaff_Click);
             // 
             // label5
             // 
@@ -645,6 +650,7 @@
             // 
             // dataGridViewStaff
             // 
+            this.dataGridViewStaff.AllowUserToAddRows = false;
             this.dataGridViewStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewStaff.Location = new System.Drawing.Point(31, 66);
             this.dataGridViewStaff.Margin = new System.Windows.Forms.Padding(2);
@@ -731,12 +737,12 @@
         private System.Windows.Forms.Button buttonAddPayments;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button buttonExcelStaff;
+        private System.Windows.Forms.Button buttonPDFStaff;
+        private System.Windows.Forms.Button buttonWordStaff;
+        private System.Windows.Forms.Button buttonDeleteStaff;
+        private System.Windows.Forms.Button buttonUpdateStaff;
+        private System.Windows.Forms.Button buttonAddStaff;
     }
 }
 

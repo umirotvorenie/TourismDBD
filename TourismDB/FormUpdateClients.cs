@@ -97,5 +97,10 @@ namespace TourismDB
             textBoxPassportNumber.Text = "";
             Form1.SetReadOnly(textClient, true);
         }
+
+        private void FormUpdateClients_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

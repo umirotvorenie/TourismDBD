@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TourismDB
@@ -30,9 +23,9 @@ namespace TourismDB
                 $"'{textBoxPrice.Text}', '{textBoxDestination.Text}', '{textBoxAvailableSeats.Text}')");
                 MessageBox.Show("Клиент успешно добавлен");
                 ClearFields();
-
             }
         }
+
         private void ClearFields()
         {
             textBoxTourName.Text = "";
@@ -43,13 +36,20 @@ namespace TourismDB
             textBoxDestination.Text = "";
             textBoxAvailableSeats.Text = "";
         }
+
         private void Clear_Click(object sender, EventArgs e)
         {
             ClearFields();
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             Form1.GoForm1(this);
+        }
+
+        private void AddToursForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -270,6 +270,7 @@
             this.Controls.Add(this.textBoxFirstName);
             this.Name = "FormUpdateClients";
             this.Text = "Обновление данных о клиенте";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormUpdateClients_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

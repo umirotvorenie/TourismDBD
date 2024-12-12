@@ -232,6 +232,7 @@
             this.Controls.Add(this.buttonBack);
             this.Name = "FormUpdatePayments";
             this.Text = "FormUpdatePayments";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormUpdatePayments_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

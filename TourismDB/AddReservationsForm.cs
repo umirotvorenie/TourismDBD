@@ -12,7 +12,6 @@ namespace TourismDB
 {
     public partial class AddReservationsForm : Form
     {
-        public string status = "";
         public AddReservationsForm()
         {
             InitializeComponent();
@@ -50,19 +49,10 @@ namespace TourismDB
                 MessageBox.Show("Недостаточно доступных мест для бронирования.");
                 return;
             }
-            switch (comboBoxStatus.Text)
-            {
-                case "Выполняется":
-                    status = "Pending";
-                    break;
-                case "Подтвержден":
-                    status = "Confirmed";
-                    break;
-            }
             try
             {
                 Form1.ExecuteQuery($"INSERT INTO Reservation (ClientID, TourID, ReservationDate, SeatsReserved, Status) VALUES (" +
-                $"{textBoxClientID.Text}, {textBoxTourID.Text}, '{textBoxReservationDate.Text}', {seatsReserved.ToString()}, '{status}')");
+                $"{textBoxClientID.Text}, {textBoxTourID.Text}, '{textBoxReservationDate.Text}', {seatsReserved.ToString()}, '{comboBoxStatus.Text}')");
                 Form1.ExecuteQuery($"UPDATE Tours SET AvailableSeats = AvailableSeats - {seatsReserved} WHERE TourID = {textBoxTourID.Text}");
                 MessageBox.Show("Бронирование успешно добавлено.");
                 ClearFields();
@@ -72,6 +62,7 @@ namespace TourismDB
                 MessageBox.Show($"Ошибка при добавлении бронирования: {ex.Message}");
             }
         }
+
         private void ClearFields()
         {
             textBoxClientID.Text = "";
@@ -79,13 +70,20 @@ namespace TourismDB
             textBoxReservationDate.Text = "";
             textBoxSeatsReserved.Text = "";
         }
+
         private void buttonBack_Click(object sender, EventArgs e)
         {
             Form1.GoForm1(this);
         }
+
         private void buttonClear_Click(object sender, EventArgs e)
         {
             ClearFields();
+        }
+
+        private void AddReservationsForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

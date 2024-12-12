@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TourismDB
 {
@@ -64,33 +63,9 @@ namespace TourismDB
                 MessageBox.Show($"Бронь с ID {textBoxReservationID.Text} не найдена.");
                 return;
             }
-            switch (comboBoxPaymentMethod.Text)
-            {
-                case "Кредитная карта":
-                    method = "Credit Card";
-                    break;
-
-                case "Банковский перевод":
-                    method = "Bank Transfer";
-                    break;
-
-                case "Наличные":
-                    method = "Cash";
-                    break;
-            }
-            switch (comboBoxPaymentStatus.Text)
-            {
-                case "Выполняется":
-                    status = "Pending";
-                    break;
-
-                case "Подтвержден":
-                    status = "Confirmed";
-                    break;
-            }
             string paymentId = textBoxPaymentID.Text;
             Form1.ExecuteQuery($"UPDATE Payments SET ReservationID = '{textBoxReservationID.Text}', PaymentDate = '{textBoxPaymentDate.Text}', Amount = '{textBoxAmount.Text}', " +
-            $"PaymentMethod = '{method}', PaymentStatus = '{status}'  WHERE PaymentID = {paymentId}");
+            $"PaymentMethod = '{comboBoxPaymentMethod.Text}', PaymentStatus = '{comboBoxPaymentStatus.Text}'  WHERE PaymentID = {paymentId}");
             MessageBox.Show("Операция прошла успешно");
             ClearFields();
         }
@@ -109,6 +84,11 @@ namespace TourismDB
         private void buttonClear_Click(object sender, EventArgs e)
         {
             ClearFields();
+        }
+
+        private void FormUpdatePayments_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
