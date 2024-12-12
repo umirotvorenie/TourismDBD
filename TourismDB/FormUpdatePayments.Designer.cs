@@ -231,7 +231,7 @@
             this.Controls.Add(this.buttonAddPayments);
             this.Controls.Add(this.buttonBack);
             this.Name = "FormUpdatePayments";
-            this.Text = "FormUpdatePayments";
+            this.Text = "Обновление данных о платеже";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormUpdatePayments_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

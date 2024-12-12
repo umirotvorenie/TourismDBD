@@ -233,7 +233,7 @@
             this.Controls.Add(this.textBoxLastName);
             this.Controls.Add(this.textBoxFirstName);
             this.Name = "AddStaffForm";
-            this.Text = "AddStaffForm";
+            this.Text = "Добавление нового сотрудника";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddStaffForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -254,7 +254,7 @@ namespace TourismDB
                         dataGridView.Columns["Email"].HeaderText = "Почта";
                         dataGridView.Columns["PhoneNumber"].HeaderText = "Номер телефона";
                         dataGridView.Columns["Address"].HeaderText = "Адрес";
-                        dataGridView.Columns["PassportNumber"].HeaderText = "Пасспорт";
+                        dataGridView.Columns["PassportNumber"].HeaderText = "Паспорт";
                         break;
 
                     case "dataGridViewPayments":

@@ -226,7 +226,7 @@
             this.Controls.Add(this.textBoxTourID);
             this.Controls.Add(this.textBoxClientID);
             this.Name = "FormUpdateReservations";
-            this.Text = "FormUpdateReservations";
+            this.Text = "Обновление данных о бронировании";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormUpdateReservations_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

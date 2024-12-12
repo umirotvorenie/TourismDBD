@@ -196,7 +196,7 @@
             this.Controls.Add(this.textBoxPaymentDate);
             this.Controls.Add(this.textBoxReservationID);
             this.Name = "AddPaymentsForm";
-            this.Text = "Добавление платежа";
+            this.Text = "Добавление нового платежа";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddPaymentsForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -270,7 +270,7 @@
             this.Controls.Add(this.textBoxTourName);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormUpdateTours";
-            this.Text = "FormUpdateTours";
+            this.Text = "Обновление данных о туре";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormUpdateTours_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

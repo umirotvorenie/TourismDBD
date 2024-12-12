@@ -191,7 +191,7 @@
             this.Controls.Add(this.textBoxTourID);
             this.Controls.Add(this.textBoxClientID);
             this.Name = "AddReservationsForm";
-            this.Text = "Добавление бронирования";
+            this.Text = "Добавление нового бронирования";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddReservationsForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
