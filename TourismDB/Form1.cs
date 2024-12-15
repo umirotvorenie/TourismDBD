@@ -634,5 +634,9 @@ namespace TourismDB
         {
             GoForm(new FormUpdateStaff());
         }
+
+        private void buttonDeleteStaff_Click(object sender, EventArgs e)
+        {
+        }
     }
 }
