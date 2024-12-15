@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace TourismDB
@@ -8,26 +9,58 @@ namespace TourismDB
         public AddPaymentsForm()
         {
             InitializeComponent();
+            LoadReservationIDs();
         }
 
         private void buttonAddPayments_Click(object sender, EventArgs e)
         {
-            if (textBoxReservationID.Text == "" || textBoxPaymentDate.Text == "" || textBoxAmount.Text == "" || comboBoxPaymentMethod.Text == "")
+            if (comboBoxIDReservation.Text == "" || textBoxPaymentDate.Text == "" || textBoxAmount.Text == "" || comboBoxPaymentMethod.Text == "")
             {
                 MessageBox.Show($"Не удалось добавить пользователя. Введите обязательные поля для ввода: ID Бронирования, Дата оплаты, Сумма, Способ оплаты");
             }
             else
             {
-                Form1.ExecuteQuery($"SELECT 1 FROM Reservation WHERE ReservationID = {textBoxReservationID.Text}", null);
+                Form1.ExecuteQuery($"SELECT 1 FROM Reservation WHERE ReservationID = {comboBoxIDReservation.Text}", null);
                 if (Form1.currentDataTable.Rows.Count == 0)
                 {
-                    MessageBox.Show($"Бронь с ID {textBoxReservationID.Text} не найдена.");
+                    MessageBox.Show($"Бронь с ID {comboBoxIDReservation.Text} не найдена.");
                     return;
                 }
                 Form1.ExecuteQuery($"INSERT INTO Payments(ReservationID, PaymentDate, Amount, PaymentMethod, PaymentStatus) " +
-                $"VALUES ('{textBoxReservationID.Text}', '{textBoxPaymentDate.Text}', '{textBoxAmount.Text}', '{comboBoxPaymentMethod.Text}', '{comboBoxPaymentStatus.Text}')");
+                $"VALUES ('{comboBoxIDReservation.Text}', '{textBoxPaymentDate.Text}', '{textBoxAmount.Text}', '{comboBoxPaymentMethod.Text}', '{comboBoxPaymentStatus.Text}')");
                 MessageBox.Show("Платеж успешно добавлен");
                 ClearFields();
+            }
+        }
+
+        private void LoadReservationIDs()
+        {
+            try
+            {
+                Form1.ExecuteQuery("SELECT ReservationID FROM Reservation ORDER BY ReservationID");
+
+                if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0)
+                {
+                    comboBoxIDReservation.Items.Clear();
+
+                    foreach (DataRow row in Form1.currentDataTable.Rows)
+                    {
+                        comboBoxIDReservation.Items.Add(row["ReservationID"].ToString());
+                    }
+
+                    if (comboBoxIDReservation.Items.Count > 0)
+                    {
+                        comboBoxIDReservation.SelectedIndex = 0;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Не удалось загрузить ID клиентов.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке ID клиентов: {ex.Message}");
             }
         }
 
@@ -43,7 +76,6 @@ namespace TourismDB
 
         private void ClearFields()
         {
-            textBoxReservationID.Text = "";
             textBoxPaymentDate.Text = "";
             textBoxAmount.Text = "";
             comboBoxPaymentMethod.Text = "";

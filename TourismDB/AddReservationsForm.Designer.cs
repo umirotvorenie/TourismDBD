@@ -30,8 +30,6 @@
         {
             this.textBoxSeatsReserved = new System.Windows.Forms.TextBox();
             this.textBoxReservationDate = new System.Windows.Forms.TextBox();
-            this.textBoxTourID = new System.Windows.Forms.TextBox();
-            this.textBoxClientID = new System.Windows.Forms.TextBox();
             this.buttonClear = new System.Windows.Forms.Button();
             this.buttonAddReservation = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
@@ -41,12 +39,14 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.comboBoxStatus = new System.Windows.Forms.ComboBox();
+            this.comboBoxClientID = new System.Windows.Forms.ComboBox();
+            this.comboBoxTourID = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // textBoxSeatsReserved
             // 
             this.textBoxSeatsReserved.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxSeatsReserved.Location = new System.Drawing.Point(225, 196);
+            this.textBoxSeatsReserved.Location = new System.Drawing.Point(231, 319);
             this.textBoxSeatsReserved.Name = "textBoxSeatsReserved";
             this.textBoxSeatsReserved.Size = new System.Drawing.Size(397, 30);
             this.textBoxSeatsReserved.TabIndex = 10;
@@ -54,30 +54,14 @@
             // textBoxReservationDate
             // 
             this.textBoxReservationDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxReservationDate.Location = new System.Drawing.Point(225, 160);
+            this.textBoxReservationDate.Location = new System.Drawing.Point(231, 283);
             this.textBoxReservationDate.Name = "textBoxReservationDate";
             this.textBoxReservationDate.Size = new System.Drawing.Size(397, 30);
             this.textBoxReservationDate.TabIndex = 9;
             // 
-            // textBoxTourID
-            // 
-            this.textBoxTourID.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxTourID.Location = new System.Drawing.Point(225, 124);
-            this.textBoxTourID.Name = "textBoxTourID";
-            this.textBoxTourID.Size = new System.Drawing.Size(162, 30);
-            this.textBoxTourID.TabIndex = 8;
-            // 
-            // textBoxClientID
-            // 
-            this.textBoxClientID.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxClientID.Location = new System.Drawing.Point(225, 88);
-            this.textBoxClientID.Name = "textBoxClientID";
-            this.textBoxClientID.Size = new System.Drawing.Size(162, 30);
-            this.textBoxClientID.TabIndex = 7;
-            // 
             // buttonClear
             // 
-            this.buttonClear.Location = new System.Drawing.Point(644, 154);
+            this.buttonClear.Location = new System.Drawing.Point(650, 277);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(142, 48);
             this.buttonClear.TabIndex = 33;
@@ -87,7 +71,7 @@
             // 
             // buttonAddReservation
             // 
-            this.buttonAddReservation.Location = new System.Drawing.Point(644, 94);
+            this.buttonAddReservation.Location = new System.Drawing.Point(650, 217);
             this.buttonAddReservation.Name = "buttonAddReservation";
             this.buttonAddReservation.Size = new System.Drawing.Size(142, 48);
             this.buttonAddReservation.TabIndex = 32;
@@ -97,7 +81,7 @@
             // 
             // buttonBack
             // 
-            this.buttonBack.Location = new System.Drawing.Point(644, 214);
+            this.buttonBack.Location = new System.Drawing.Point(650, 337);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(142, 48);
             this.buttonBack.TabIndex = 31;
@@ -110,7 +94,7 @@
             this.label8.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label8.Location = new System.Drawing.Point(141, 235);
+            this.label8.Location = new System.Drawing.Point(147, 358);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(78, 25);
             this.label8.TabIndex = 38;
@@ -121,7 +105,7 @@
             this.label7.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label7.Location = new System.Drawing.Point(13, 199);
+            this.label7.Location = new System.Drawing.Point(19, 322);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(206, 25);
             this.label7.TabIndex = 37;
@@ -132,7 +116,7 @@
             this.label6.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label6.Location = new System.Drawing.Point(23, 163);
+            this.label6.Location = new System.Drawing.Point(29, 286);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(196, 25);
             this.label6.TabIndex = 36;
@@ -143,7 +127,7 @@
             this.label5.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label5.Location = new System.Drawing.Point(141, 127);
+            this.label5.Location = new System.Drawing.Point(147, 175);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 25);
             this.label5.TabIndex = 35;
@@ -154,7 +138,7 @@
             this.label4.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label4.Location = new System.Drawing.Point(104, 91);
+            this.label4.Location = new System.Drawing.Point(110, 79);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(115, 25);
             this.label4.TabIndex = 34;
@@ -167,16 +151,40 @@
             this.comboBoxStatus.Items.AddRange(new object[] {
             "Выполняется",
             "Подтвержден"});
-            this.comboBoxStatus.Location = new System.Drawing.Point(225, 232);
+            this.comboBoxStatus.Location = new System.Drawing.Point(231, 355);
             this.comboBoxStatus.Name = "comboBoxStatus";
             this.comboBoxStatus.Size = new System.Drawing.Size(162, 32);
             this.comboBoxStatus.TabIndex = 39;
+            // 
+            // comboBoxClientID
+            // 
+            this.comboBoxClientID.DropDownHeight = 50;
+            this.comboBoxClientID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.comboBoxClientID.FormattingEnabled = true;
+            this.comboBoxClientID.IntegralHeight = false;
+            this.comboBoxClientID.Location = new System.Drawing.Point(231, 80);
+            this.comboBoxClientID.Name = "comboBoxClientID";
+            this.comboBoxClientID.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxClientID.TabIndex = 40;
+            // 
+            // comboBoxTourID
+            // 
+            this.comboBoxTourID.DropDownHeight = 50;
+            this.comboBoxTourID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.comboBoxTourID.FormattingEnabled = true;
+            this.comboBoxTourID.IntegralHeight = false;
+            this.comboBoxTourID.Location = new System.Drawing.Point(231, 176);
+            this.comboBoxTourID.Name = "comboBoxTourID";
+            this.comboBoxTourID.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxTourID.TabIndex = 41;
             // 
             // AddReservationsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 356);
+            this.ClientSize = new System.Drawing.Size(804, 453);
+            this.Controls.Add(this.comboBoxTourID);
+            this.Controls.Add(this.comboBoxClientID);
             this.Controls.Add(this.comboBoxStatus);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -188,8 +196,6 @@
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.textBoxSeatsReserved);
             this.Controls.Add(this.textBoxReservationDate);
-            this.Controls.Add(this.textBoxTourID);
-            this.Controls.Add(this.textBoxClientID);
             this.Name = "AddReservationsForm";
             this.Text = "Добавление нового бронирования";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddReservationsForm_FormClosed);
@@ -201,8 +207,6 @@
         #endregion
         private System.Windows.Forms.TextBox textBoxSeatsReserved;
         private System.Windows.Forms.TextBox textBoxReservationDate;
-        private System.Windows.Forms.TextBox textBoxTourID;
-        private System.Windows.Forms.TextBox textBoxClientID;
         private System.Windows.Forms.Button buttonClear;
         private System.Windows.Forms.Button buttonAddReservation;
         private System.Windows.Forms.Button buttonBack;
@@ -212,5 +216,7 @@
         public System.Windows.Forms.Label label5;
         public System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox comboBoxStatus;
+        private System.Windows.Forms.ComboBox comboBoxClientID;
+        private System.Windows.Forms.ComboBox comboBoxTourID;
     }
 }

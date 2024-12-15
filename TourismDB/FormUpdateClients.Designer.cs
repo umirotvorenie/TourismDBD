@@ -38,7 +38,6 @@
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.textBoxFirstName = new System.Windows.Forms.TextBox();
             this.LoadDataClient = new System.Windows.Forms.Button();
-            this.textBoxIDClient = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,11 +47,12 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.comboBoxClientID = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // buttonAddClients
             // 
-            this.buttonAddClients.Location = new System.Drawing.Point(616, 159);
+            this.buttonAddClients.Location = new System.Drawing.Point(616, 212);
             this.buttonAddClients.Name = "buttonAddClients";
             this.buttonAddClients.Size = new System.Drawing.Size(142, 48);
             this.buttonAddClients.TabIndex = 17;
@@ -62,7 +62,7 @@
             // 
             // Back
             // 
-            this.Back.Location = new System.Drawing.Point(616, 284);
+            this.Back.Location = new System.Drawing.Point(616, 337);
             this.Back.Name = "Back";
             this.Back.Size = new System.Drawing.Size(142, 48);
             this.Back.TabIndex = 16;
@@ -73,7 +73,7 @@
             // textBoxPassportNumber
             // 
             this.textBoxPassportNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxPassportNumber.Location = new System.Drawing.Point(197, 304);
+            this.textBoxPassportNumber.Location = new System.Drawing.Point(197, 357);
             this.textBoxPassportNumber.Name = "textBoxPassportNumber";
             this.textBoxPassportNumber.Size = new System.Drawing.Size(397, 30);
             this.textBoxPassportNumber.TabIndex = 15;
@@ -81,7 +81,7 @@
             // textBoxAddress
             // 
             this.textBoxAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxAddress.Location = new System.Drawing.Point(197, 268);
+            this.textBoxAddress.Location = new System.Drawing.Point(197, 321);
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(397, 30);
             this.textBoxAddress.TabIndex = 14;
@@ -89,7 +89,7 @@
             // textBoxPhoneNumber
             // 
             this.textBoxPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxPhoneNumber.Location = new System.Drawing.Point(197, 232);
+            this.textBoxPhoneNumber.Location = new System.Drawing.Point(197, 285);
             this.textBoxPhoneNumber.Name = "textBoxPhoneNumber";
             this.textBoxPhoneNumber.Size = new System.Drawing.Size(397, 30);
             this.textBoxPhoneNumber.TabIndex = 13;
@@ -97,7 +97,7 @@
             // textBoxEmail
             // 
             this.textBoxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxEmail.Location = new System.Drawing.Point(197, 196);
+            this.textBoxEmail.Location = new System.Drawing.Point(197, 249);
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(397, 30);
             this.textBoxEmail.TabIndex = 12;
@@ -105,7 +105,7 @@
             // textBoxDateOfBirth
             // 
             this.textBoxDateOfBirth.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxDateOfBirth.Location = new System.Drawing.Point(197, 160);
+            this.textBoxDateOfBirth.Location = new System.Drawing.Point(197, 213);
             this.textBoxDateOfBirth.Name = "textBoxDateOfBirth";
             this.textBoxDateOfBirth.Size = new System.Drawing.Size(397, 30);
             this.textBoxDateOfBirth.TabIndex = 11;
@@ -113,7 +113,7 @@
             // textBoxLastName
             // 
             this.textBoxLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxLastName.Location = new System.Drawing.Point(197, 124);
+            this.textBoxLastName.Location = new System.Drawing.Point(197, 177);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(397, 30);
             this.textBoxLastName.TabIndex = 10;
@@ -121,7 +121,7 @@
             // textBoxFirstName
             // 
             this.textBoxFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxFirstName.Location = new System.Drawing.Point(197, 88);
+            this.textBoxFirstName.Location = new System.Drawing.Point(197, 141);
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.ReadOnly = true;
             this.textBoxFirstName.Size = new System.Drawing.Size(397, 30);
@@ -129,21 +129,13 @@
             // 
             // LoadDataClient
             // 
-            this.LoadDataClient.Location = new System.Drawing.Point(616, 100);
+            this.LoadDataClient.Location = new System.Drawing.Point(616, 153);
             this.LoadDataClient.Name = "LoadDataClient";
             this.LoadDataClient.Size = new System.Drawing.Size(142, 48);
             this.LoadDataClient.TabIndex = 19;
             this.LoadDataClient.Text = "Загрузить данные клиента";
             this.LoadDataClient.UseVisualStyleBackColor = true;
             this.LoadDataClient.Click += new System.EventHandler(this.LoadDataClient_Click);
-            // 
-            // textBoxIDClient
-            // 
-            this.textBoxIDClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxIDClient.Location = new System.Drawing.Point(313, 52);
-            this.textBoxIDClient.Name = "textBoxIDClient";
-            this.textBoxIDClient.Size = new System.Drawing.Size(100, 30);
-            this.textBoxIDClient.TabIndex = 20;
             // 
             // label1
             // 
@@ -161,7 +153,7 @@
             this.label2.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label2.Location = new System.Drawing.Point(137, 91);
+            this.label2.Location = new System.Drawing.Point(137, 144);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(54, 25);
             this.label2.TabIndex = 22;
@@ -172,7 +164,7 @@
             this.label3.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label3.Location = new System.Drawing.Point(88, 127);
+            this.label3.Location = new System.Drawing.Point(88, 180);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(103, 25);
             this.label3.TabIndex = 23;
@@ -183,7 +175,7 @@
             this.label4.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label4.Location = new System.Drawing.Point(30, 163);
+            this.label4.Location = new System.Drawing.Point(30, 216);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(161, 25);
             this.label4.TabIndex = 24;
@@ -194,7 +186,7 @@
             this.label5.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label5.Location = new System.Drawing.Point(121, 199);
+            this.label5.Location = new System.Drawing.Point(121, 252);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(70, 25);
             this.label5.TabIndex = 25;
@@ -205,7 +197,7 @@
             this.label6.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label6.Location = new System.Drawing.Point(14, 235);
+            this.label6.Location = new System.Drawing.Point(14, 288);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(177, 25);
             this.label6.TabIndex = 26;
@@ -216,7 +208,7 @@
             this.label7.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label7.Location = new System.Drawing.Point(121, 271);
+            this.label7.Location = new System.Drawing.Point(121, 324);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(69, 25);
             this.label7.TabIndex = 27;
@@ -227,7 +219,7 @@
             this.label8.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label8.Location = new System.Drawing.Point(90, 307);
+            this.label8.Location = new System.Drawing.Point(90, 360);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(101, 25);
             this.label8.TabIndex = 28;
@@ -235,7 +227,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(616, 222);
+            this.button1.Location = new System.Drawing.Point(616, 275);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(142, 48);
             this.button1.TabIndex = 29;
@@ -243,11 +235,24 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Clear_Click);
             // 
+            // comboBoxClientID
+            // 
+            this.comboBoxClientID.DropDownHeight = 50;
+            this.comboBoxClientID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.comboBoxClientID.FormattingEnabled = true;
+            this.comboBoxClientID.IntegralHeight = false;
+            this.comboBoxClientID.ItemHeight = 16;
+            this.comboBoxClientID.Location = new System.Drawing.Point(313, 55);
+            this.comboBoxClientID.Name = "comboBoxClientID";
+            this.comboBoxClientID.Size = new System.Drawing.Size(100, 24);
+            this.comboBoxClientID.TabIndex = 30;
+            // 
             // FormUpdateClients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(779, 360);
+            this.ClientSize = new System.Drawing.Size(779, 412);
+            this.Controls.Add(this.comboBoxClientID);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -257,7 +262,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxIDClient);
             this.Controls.Add(this.LoadDataClient);
             this.Controls.Add(this.buttonAddClients);
             this.Controls.Add(this.Back);
@@ -288,7 +292,6 @@
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.TextBox textBoxFirstName;
         private System.Windows.Forms.Button LoadDataClient;
-        private System.Windows.Forms.TextBox textBoxIDClient;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.Label label3;
@@ -298,5 +301,6 @@
         public System.Windows.Forms.Label label7;
         public System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox comboBoxClientID;
     }
 }

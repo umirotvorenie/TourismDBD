@@ -36,7 +36,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBoxIDTour = new System.Windows.Forms.TextBox();
             this.textBoxAvailableSeats = new System.Windows.Forms.TextBox();
             this.textBoxDestination = new System.Windows.Forms.TextBox();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
@@ -48,6 +47,7 @@
             this.buttonLoadDataTours = new System.Windows.Forms.Button();
             this.buttonAddTours = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
+            this.comboBoxIDTour = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label8
@@ -55,7 +55,7 @@
             this.label8.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label8.Location = new System.Drawing.Point(21, 307);
+            this.label8.Location = new System.Drawing.Point(23, 371);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(170, 25);
             this.label8.TabIndex = 44;
@@ -66,7 +66,7 @@
             this.label7.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label7.Location = new System.Drawing.Point(6, 271);
+            this.label7.Location = new System.Drawing.Point(8, 335);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(185, 25);
             this.label7.TabIndex = 43;
@@ -77,7 +77,7 @@
             this.label6.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label6.Location = new System.Drawing.Point(133, 235);
+            this.label6.Location = new System.Drawing.Point(135, 299);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(58, 25);
             this.label6.TabIndex = 42;
@@ -88,7 +88,7 @@
             this.label5.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label5.Location = new System.Drawing.Point(28, 199);
+            this.label5.Location = new System.Drawing.Point(30, 263);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(163, 25);
             this.label5.TabIndex = 41;
@@ -99,7 +99,7 @@
             this.label4.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label4.Location = new System.Drawing.Point(61, 163);
+            this.label4.Location = new System.Drawing.Point(63, 227);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(130, 25);
             this.label4.TabIndex = 40;
@@ -110,7 +110,7 @@
             this.label3.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label3.Location = new System.Drawing.Point(89, 127);
+            this.label3.Location = new System.Drawing.Point(91, 191);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(102, 25);
             this.label3.TabIndex = 39;
@@ -121,7 +121,7 @@
             this.label2.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label2.Location = new System.Drawing.Point(45, 91);
+            this.label2.Location = new System.Drawing.Point(47, 155);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(146, 25);
             this.label2.TabIndex = 38;
@@ -139,18 +139,10 @@
             this.label1.TabIndex = 37;
             this.label1.Text = "ID Тура";
             // 
-            // textBoxIDTour
-            // 
-            this.textBoxIDTour.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxIDTour.Location = new System.Drawing.Point(273, 50);
-            this.textBoxIDTour.Name = "textBoxIDTour";
-            this.textBoxIDTour.Size = new System.Drawing.Size(100, 30);
-            this.textBoxIDTour.TabIndex = 36;
-            // 
             // textBoxAvailableSeats
             // 
             this.textBoxAvailableSeats.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxAvailableSeats.Location = new System.Drawing.Point(197, 304);
+            this.textBoxAvailableSeats.Location = new System.Drawing.Point(199, 368);
             this.textBoxAvailableSeats.Name = "textBoxAvailableSeats";
             this.textBoxAvailableSeats.Size = new System.Drawing.Size(397, 30);
             this.textBoxAvailableSeats.TabIndex = 35;
@@ -158,7 +150,7 @@
             // textBoxDestination
             // 
             this.textBoxDestination.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxDestination.Location = new System.Drawing.Point(197, 268);
+            this.textBoxDestination.Location = new System.Drawing.Point(199, 332);
             this.textBoxDestination.Name = "textBoxDestination";
             this.textBoxDestination.Size = new System.Drawing.Size(397, 30);
             this.textBoxDestination.TabIndex = 34;
@@ -166,7 +158,7 @@
             // textBoxPrice
             // 
             this.textBoxPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxPrice.Location = new System.Drawing.Point(197, 232);
+            this.textBoxPrice.Location = new System.Drawing.Point(199, 296);
             this.textBoxPrice.Name = "textBoxPrice";
             this.textBoxPrice.Size = new System.Drawing.Size(397, 30);
             this.textBoxPrice.TabIndex = 33;
@@ -174,7 +166,7 @@
             // textBoxEndDate
             // 
             this.textBoxEndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxEndDate.Location = new System.Drawing.Point(197, 196);
+            this.textBoxEndDate.Location = new System.Drawing.Point(199, 260);
             this.textBoxEndDate.Name = "textBoxEndDate";
             this.textBoxEndDate.Size = new System.Drawing.Size(397, 30);
             this.textBoxEndDate.TabIndex = 32;
@@ -182,7 +174,7 @@
             // textBoxStartDate
             // 
             this.textBoxStartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxStartDate.Location = new System.Drawing.Point(197, 160);
+            this.textBoxStartDate.Location = new System.Drawing.Point(199, 224);
             this.textBoxStartDate.Name = "textBoxStartDate";
             this.textBoxStartDate.Size = new System.Drawing.Size(397, 30);
             this.textBoxStartDate.TabIndex = 31;
@@ -190,7 +182,7 @@
             // textBoxDescription
             // 
             this.textBoxDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxDescription.Location = new System.Drawing.Point(197, 124);
+            this.textBoxDescription.Location = new System.Drawing.Point(199, 188);
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.Size = new System.Drawing.Size(397, 30);
             this.textBoxDescription.TabIndex = 30;
@@ -198,14 +190,14 @@
             // textBoxTourName
             // 
             this.textBoxTourName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxTourName.Location = new System.Drawing.Point(197, 88);
+            this.textBoxTourName.Location = new System.Drawing.Point(199, 152);
             this.textBoxTourName.Name = "textBoxTourName";
             this.textBoxTourName.Size = new System.Drawing.Size(397, 30);
             this.textBoxTourName.TabIndex = 29;
             // 
             // buttonClear
             // 
-            this.buttonClear.Location = new System.Drawing.Point(616, 222);
+            this.buttonClear.Location = new System.Drawing.Point(618, 286);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(142, 48);
             this.buttonClear.TabIndex = 48;
@@ -215,7 +207,7 @@
             // 
             // buttonLoadDataTours
             // 
-            this.buttonLoadDataTours.Location = new System.Drawing.Point(616, 100);
+            this.buttonLoadDataTours.Location = new System.Drawing.Point(618, 164);
             this.buttonLoadDataTours.Name = "buttonLoadDataTours";
             this.buttonLoadDataTours.Size = new System.Drawing.Size(142, 48);
             this.buttonLoadDataTours.TabIndex = 47;
@@ -225,7 +217,7 @@
             // 
             // buttonAddTours
             // 
-            this.buttonAddTours.Location = new System.Drawing.Point(616, 159);
+            this.buttonAddTours.Location = new System.Drawing.Point(618, 223);
             this.buttonAddTours.Name = "buttonAddTours";
             this.buttonAddTours.Size = new System.Drawing.Size(142, 48);
             this.buttonAddTours.TabIndex = 46;
@@ -235,7 +227,7 @@
             // 
             // buttonBack
             // 
-            this.buttonBack.Location = new System.Drawing.Point(616, 284);
+            this.buttonBack.Location = new System.Drawing.Point(618, 348);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(142, 48);
             this.buttonBack.TabIndex = 45;
@@ -243,11 +235,23 @@
             this.buttonBack.UseVisualStyleBackColor = true;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
+            // comboBoxIDTour
+            // 
+            this.comboBoxIDTour.DropDownHeight = 50;
+            this.comboBoxIDTour.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.comboBoxIDTour.FormattingEnabled = true;
+            this.comboBoxIDTour.IntegralHeight = false;
+            this.comboBoxIDTour.Location = new System.Drawing.Point(278, 53);
+            this.comboBoxIDTour.Name = "comboBoxIDTour";
+            this.comboBoxIDTour.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxIDTour.TabIndex = 49;
+            // 
             // FormUpdateTours
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(779, 360);
+            this.ClientSize = new System.Drawing.Size(779, 420);
+            this.Controls.Add(this.comboBoxIDTour);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.buttonLoadDataTours);
             this.Controls.Add(this.buttonAddTours);
@@ -260,7 +264,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxIDTour);
             this.Controls.Add(this.textBoxAvailableSeats);
             this.Controls.Add(this.textBoxDestination);
             this.Controls.Add(this.textBoxPrice);
@@ -287,7 +290,6 @@
         public System.Windows.Forms.Label label3;
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxIDTour;
         private System.Windows.Forms.TextBox textBoxAvailableSeats;
         private System.Windows.Forms.TextBox textBoxDestination;
         private System.Windows.Forms.TextBox textBoxPrice;
@@ -299,5 +301,6 @@
         private System.Windows.Forms.Button buttonLoadDataTours;
         private System.Windows.Forms.Button buttonAddTours;
         private System.Windows.Forms.Button buttonBack;
+        private System.Windows.Forms.ComboBox comboBoxIDTour;
     }
 }

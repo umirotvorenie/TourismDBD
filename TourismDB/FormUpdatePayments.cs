@@ -15,26 +15,28 @@ namespace TourismDB
             InitializeComponent();
             comboBoxPaymentMethod.SelectedIndex = 0;
             comboBoxPaymentStatus.SelectedIndex = 0;
-            textPayment.Add(textBoxReservationID);
             textPayment.Add(textBoxPaymentDate);
             textPayment.Add(textBoxAmount);
+            LoadPaymentsIDs();
+            LoadReservationIDs();
             Form1.SetReadOnly(textPayment, true);
             comboBoxPaymentMethod.Enabled = false;
             comboBoxPaymentStatus.Enabled = false;
+            comboBoxIDReservation.Enabled = false;
         }
 
         private void LoadDataPayments_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBoxPaymentID.Text))
+            if (string.IsNullOrWhiteSpace(comboBoxPaymentID.Text))
             {
                 MessageBox.Show("Введите ID брони.");
                 return;
             }
-            Form1.ExecuteQuery($"SELECT ReservationID, PaymentDate, Amount, PaymentMethod, PaymentStatus FROM Payments WHERE PaymentID = {textBoxPaymentID.Text}");
+            Form1.ExecuteQuery($"SELECT ReservationID, PaymentDate, Amount, PaymentMethod, PaymentStatus FROM Payments WHERE PaymentID = {comboBoxPaymentID.Text}");
             if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0)
             {
                 DataRow row = Form1.currentDataTable.Rows[0];
-                textBoxReservationID.Text = row["ReservationID"].ToString();
+                comboBoxIDReservation.Text = row["ReservationID"].ToString();
                 textBoxPaymentDate.Text = row["PaymentDate"].ToString();
                 textBoxAmount.Text = row["Amount"].ToString();
                 comboBoxPaymentMethod.Text = row["PaymentMethod"].ToString();
@@ -42,6 +44,7 @@ namespace TourismDB
                 Form1.SetReadOnly(textPayment, false);
                 comboBoxPaymentMethod.Enabled = true;
                 comboBoxPaymentStatus.Enabled = true;
+                comboBoxIDReservation.Enabled = true;
             }
             else
             {
@@ -50,21 +53,83 @@ namespace TourismDB
             }
         }
 
+        private void LoadReservationIDs()
+        {
+            try
+            {
+                Form1.ExecuteQuery("SELECT ReservationID FROM Reservation ORDER BY ReservationID");
+
+                if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0)
+                {
+                    comboBoxIDReservation.Items.Clear();
+
+                    foreach (DataRow row in Form1.currentDataTable.Rows)
+                    {
+                        comboBoxIDReservation.Items.Add(row["ReservationID"].ToString());
+                    }
+
+                    if (comboBoxIDReservation.Items.Count > 0)
+                    {
+                        comboBoxIDReservation.SelectedIndex = 0;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Не удалось загрузить ID клиентов.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке ID клиентов: {ex.Message}");
+            }
+        }
+
+        private void LoadPaymentsIDs()
+        {
+            try
+            {
+                Form1.ExecuteQuery("SELECT PaymentID FROM Payments ORDER BY PaymentID");
+
+                if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0)
+                {
+                    comboBoxPaymentID.Items.Clear();
+
+                    foreach (DataRow row in Form1.currentDataTable.Rows)
+                    {
+                        comboBoxPaymentID.Items.Add(row["PaymentID"].ToString());
+                    }
+
+                    if (comboBoxPaymentID.Items.Count > 0)
+                    {
+                        comboBoxPaymentID.SelectedIndex = 0;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Не удалось загрузить ID платежей.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке ID платежей: {ex.Message}");
+            }
+        }
+
         private void buttonAddPayments_Click(object sender, EventArgs e)
         {
-            if (textBoxReservationID.Text == "" || textBoxPaymentDate.Text == "" || textBoxAmount.Text == "" || comboBoxPaymentMethod.Text == "")
+            if (comboBoxIDReservation.Text == "" || textBoxPaymentDate.Text == "" || textBoxAmount.Text == "" || comboBoxPaymentMethod.Text == "")
             {
                 MessageBox.Show("Обязательные поля не могут быть пустыми: ID Бронирования, Дата оплаты, Сумма, Способ оплаты.");
                 return;
             }
-            Form1.ExecuteQuery($"SELECT 1 FROM Reservation WHERE ReservationID = {textBoxReservationID.Text}", null);
+            Form1.ExecuteQuery($"SELECT 1 FROM Reservation WHERE ReservationID = {comboBoxIDReservation.Text}", null);
             if (Form1.currentDataTable.Rows.Count == 0)
             {
-                MessageBox.Show($"Бронь с ID {textBoxReservationID.Text} не найдена.");
+                MessageBox.Show($"Бронь с ID {comboBoxIDReservation.Text} не найдена.");
                 return;
             }
-            string paymentId = textBoxPaymentID.Text;
-            Form1.ExecuteQuery($"UPDATE Payments SET ReservationID = '{textBoxReservationID.Text}', PaymentDate = '{textBoxPaymentDate.Text}', Amount = '{textBoxAmount.Text}', " +
+            string paymentId = comboBoxPaymentID.Text;
+            Form1.ExecuteQuery($"UPDATE Payments SET ReservationID = '{comboBoxIDReservation.Text}', PaymentDate = '{textBoxPaymentDate.Text}', Amount = '{textBoxAmount.Text}', " +
             $"PaymentMethod = '{comboBoxPaymentMethod.Text}', PaymentStatus = '{comboBoxPaymentStatus.Text}'  WHERE PaymentID = {paymentId}");
             MessageBox.Show("Операция прошла успешно");
             ClearFields();
@@ -72,13 +137,12 @@ namespace TourismDB
 
         private void ClearFields()
         {
-            textBoxPaymentID.Text = "";
-            textBoxReservationID.Text = "";
             textBoxPaymentDate.Text = "";
             textBoxAmount.Text = "";
             Form1.SetReadOnly(textPayment, true);
             comboBoxPaymentMethod.Enabled = false;
             comboBoxPaymentStatus.Enabled = false;
+            comboBoxIDReservation.Enabled = false;
         }
 
         private void buttonClear_Click(object sender, EventArgs e)

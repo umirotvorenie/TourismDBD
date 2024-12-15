@@ -12,6 +12,7 @@ namespace TourismDB
         public FormUpdateTours()
         {
             InitializeComponent();
+            LoadTourIDs();
             textTour.Add(textBoxTourName);
             textTour.Add(textBoxDescription);
             textTour.Add(textBoxStartDate);
@@ -24,12 +25,12 @@ namespace TourismDB
 
         private void LoadDataClient_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBoxIDTour.Text))
+            if (string.IsNullOrWhiteSpace(comboBoxIDTour.Text))
             {
                 MessageBox.Show("Введите ID тура.");
                 return;
             }
-            if (!int.TryParse(textBoxIDTour.Text, out int tourId))
+            if (!int.TryParse(comboBoxIDTour.Text, out int tourId))
             {
                 MessageBox.Show("ID клиента должен быть числом.");
                 ClearFields();
@@ -55,9 +56,39 @@ namespace TourismDB
             }
         }
 
+        private void LoadTourIDs()
+        {
+            try
+            {
+                Form1.ExecuteQuery("SELECT TourID FROM Tours ORDER BY TourID");
+
+                if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0)
+                {
+                    comboBoxIDTour.Items.Clear();
+
+                    foreach (DataRow row in Form1.currentDataTable.Rows)
+                    {
+                        comboBoxIDTour.Items.Add(row["TourID"].ToString());
+                    }
+
+                    if (comboBoxIDTour.Items.Count > 0)
+                    {
+                        comboBoxIDTour.SelectedIndex = 0;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Не удалось загрузить ID туров.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке ID туров: {ex.Message}");
+            }
+        }
+
         private void ClearFields()
         {
-            textBoxIDTour.Text = "";
             textBoxTourName.Text = "";
             textBoxDescription.Text = "";
             textBoxStartDate.Text = "";
@@ -70,7 +101,7 @@ namespace TourismDB
 
         private void buttonAddTours_Click(object sender, EventArgs e)
         {
-            if (textBoxIDTour.Text == "")
+            if (comboBoxIDTour.Text == "")
             {
                 MessageBox.Show("Введите ID тура");
                 return;
@@ -80,7 +111,7 @@ namespace TourismDB
                 MessageBox.Show("Обязательные не поля не могут быть пустыми : Название тура, Дата начала, Дата окончания, Цена");
                 return;
             }
-            string clientId = textBoxIDTour.Text;
+            string clientId = comboBoxIDTour.Text;
             Form1.ExecuteQuery($"UPDATE Tours SET TourName = '{textBoxTourName.Text}', Description = '{textBoxDescription.Text}', StartDate = '{textBoxStartDate.Text}', " +
             $"EndDate = '{textBoxEndDate.Text}', Price = '{textBoxPrice.Text}', Destination = '{textBoxDestination.Text}', " +
             $"AvailableSeats = '{textBoxAvailableSeats.Text}' WHERE TourID = {clientId}");

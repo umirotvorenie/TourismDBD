@@ -12,6 +12,7 @@ namespace TourismDB
         public FormUpdateStaff()
         {
             InitializeComponent();
+            LoadStaffIDs();
             textStaff.Add(textBoxFirstName);
             textStaff.Add(textBoxLastName);
             textStaff.Add(textBoxPosition);
@@ -24,12 +25,12 @@ namespace TourismDB
 
         private void LoadDataStaff_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBoxIDStaff.Text))
+            if (string.IsNullOrWhiteSpace(comboBoxIDStaff.Text))
             {
                 MessageBox.Show("Введите ID сотрудника.");
                 return;
             }
-            if (!int.TryParse(textBoxIDStaff.Text, out int staffId))
+            if (!int.TryParse(comboBoxIDStaff.Text, out int staffId))
             {
                 MessageBox.Show("ID сотрудника должен быть числом.");
                 ClearFields();
@@ -55,9 +56,40 @@ namespace TourismDB
             }
         }
 
+        private void LoadStaffIDs()
+        {
+            try
+            {
+                Form1.ExecuteQuery("SELECT StaffID FROM Staff ORDER BY StaffID");
+
+                if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0)
+                {
+                    comboBoxIDStaff.Items.Clear();
+
+                    foreach (DataRow row in Form1.currentDataTable.Rows)
+                    {
+                        comboBoxIDStaff.Items.Add(row["StaffID"].ToString());
+                    }
+
+                    if (comboBoxIDStaff.Items.Count > 0)
+                    {
+                        comboBoxIDStaff.SelectedIndex = 0;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Не удалось загрузить ID сотрудников.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке ID сотрудников: {ex.Message}");
+            }
+        }
+
         private void buttonAddStaff_Click(object sender, EventArgs e)
         {
-            if (textBoxIDStaff.Text == "")
+            if (comboBoxIDStaff.Text == "")
             {
                 MessageBox.Show("Введите ID сотрудника");
                 return;
@@ -67,7 +99,7 @@ namespace TourismDB
                 MessageBox.Show("Обязательные поля не могут быть пустыми: Имя, Фамилия, Дата приема на работу, Почта");
                 return;
             }
-            string clientId = textBoxIDStaff.Text;
+            string clientId = comboBoxIDStaff.Text;
             Form1.ExecuteQuery($"UPDATE Staff SET FirstName = '{textBoxFirstName.Text}', LastName = '{textBoxLastName.Text}', Position = '{textBoxPosition.Text}', " +
             $"Email = '{textBoxEmail.Text}', PhoneNumber = '{textBoxPhoneNumber.Text}', HireDate = '{textBoxHireDate.Text}', " +
             $"Salary = '{textBoxSalary.Text}' WHERE StaffID = {clientId}");
@@ -77,7 +109,6 @@ namespace TourismDB
 
         private void ClearFields()
         {
-            textBoxIDStaff.Text = "";
             textBoxFirstName.Text = "";
             textBoxLastName.Text = "";
             textBoxPosition.Text = "";

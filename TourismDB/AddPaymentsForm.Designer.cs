@@ -35,12 +35,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxAmount = new System.Windows.Forms.TextBox();
             this.textBoxPaymentDate = new System.Windows.Forms.TextBox();
-            this.textBoxReservationID = new System.Windows.Forms.TextBox();
             this.buttonClear = new System.Windows.Forms.Button();
             this.buttonAddPayments = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
             this.comboBoxPaymentMethod = new System.Windows.Forms.ComboBox();
             this.comboBoxPaymentStatus = new System.Windows.Forms.ComboBox();
+            this.comboBoxIDReservation = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label6
@@ -48,7 +48,7 @@
             this.label6.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label6.Location = new System.Drawing.Point(113, 266);
+            this.label6.Location = new System.Drawing.Point(113, 344);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(78, 25);
             this.label6.TabIndex = 37;
@@ -59,7 +59,7 @@
             this.label5.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label5.Location = new System.Drawing.Point(37, 152);
+            this.label5.Location = new System.Drawing.Point(37, 230);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(154, 25);
             this.label5.TabIndex = 36;
@@ -70,7 +70,7 @@
             this.label4.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label4.Location = new System.Drawing.Point(113, 117);
+            this.label4.Location = new System.Drawing.Point(113, 195);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 25);
             this.label4.TabIndex = 35;
@@ -81,7 +81,7 @@
             this.label3.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label3.Location = new System.Drawing.Point(55, 81);
+            this.label3.Location = new System.Drawing.Point(55, 159);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(136, 25);
             this.label3.TabIndex = 34;
@@ -101,7 +101,7 @@
             // textBoxAmount
             // 
             this.textBoxAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxAmount.Location = new System.Drawing.Point(197, 114);
+            this.textBoxAmount.Location = new System.Drawing.Point(197, 192);
             this.textBoxAmount.Name = "textBoxAmount";
             this.textBoxAmount.Size = new System.Drawing.Size(397, 30);
             this.textBoxAmount.TabIndex = 30;
@@ -109,22 +109,14 @@
             // textBoxPaymentDate
             // 
             this.textBoxPaymentDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxPaymentDate.Location = new System.Drawing.Point(197, 78);
+            this.textBoxPaymentDate.Location = new System.Drawing.Point(197, 156);
             this.textBoxPaymentDate.Name = "textBoxPaymentDate";
             this.textBoxPaymentDate.Size = new System.Drawing.Size(397, 30);
             this.textBoxPaymentDate.TabIndex = 29;
             // 
-            // textBoxReservationID
-            // 
-            this.textBoxReservationID.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.textBoxReservationID.Location = new System.Drawing.Point(197, 42);
-            this.textBoxReservationID.Name = "textBoxReservationID";
-            this.textBoxReservationID.Size = new System.Drawing.Size(397, 30);
-            this.textBoxReservationID.TabIndex = 28;
-            // 
             // buttonClear
             // 
-            this.buttonClear.Location = new System.Drawing.Point(616, 226);
+            this.buttonClear.Location = new System.Drawing.Point(616, 304);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(142, 48);
             this.buttonClear.TabIndex = 40;
@@ -134,7 +126,7 @@
             // 
             // buttonAddPayments
             // 
-            this.buttonAddPayments.Location = new System.Drawing.Point(616, 166);
+            this.buttonAddPayments.Location = new System.Drawing.Point(616, 244);
             this.buttonAddPayments.Name = "buttonAddPayments";
             this.buttonAddPayments.Size = new System.Drawing.Size(142, 48);
             this.buttonAddPayments.TabIndex = 39;
@@ -144,7 +136,7 @@
             // 
             // buttonBack
             // 
-            this.buttonBack.Location = new System.Drawing.Point(616, 286);
+            this.buttonBack.Location = new System.Drawing.Point(616, 364);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(142, 48);
             this.buttonBack.TabIndex = 38;
@@ -160,7 +152,7 @@
             "Кредитная карта",
             "Банковский перевод",
             "Наличные"});
-            this.comboBoxPaymentMethod.Location = new System.Drawing.Point(197, 150);
+            this.comboBoxPaymentMethod.Location = new System.Drawing.Point(197, 228);
             this.comboBoxPaymentMethod.Name = "comboBoxPaymentMethod";
             this.comboBoxPaymentMethod.Size = new System.Drawing.Size(188, 32);
             this.comboBoxPaymentMethod.TabIndex = 41;
@@ -172,16 +164,28 @@
             this.comboBoxPaymentStatus.Items.AddRange(new object[] {
             "Выполняется",
             "Подтвержден"});
-            this.comboBoxPaymentStatus.Location = new System.Drawing.Point(197, 264);
+            this.comboBoxPaymentStatus.Location = new System.Drawing.Point(197, 342);
             this.comboBoxPaymentStatus.Name = "comboBoxPaymentStatus";
             this.comboBoxPaymentStatus.Size = new System.Drawing.Size(121, 32);
             this.comboBoxPaymentStatus.TabIndex = 42;
+            // 
+            // comboBoxIDReservation
+            // 
+            this.comboBoxIDReservation.DropDownHeight = 50;
+            this.comboBoxIDReservation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.comboBoxIDReservation.FormattingEnabled = true;
+            this.comboBoxIDReservation.IntegralHeight = false;
+            this.comboBoxIDReservation.Location = new System.Drawing.Point(197, 46);
+            this.comboBoxIDReservation.Name = "comboBoxIDReservation";
+            this.comboBoxIDReservation.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxIDReservation.TabIndex = 43;
             // 
             // AddPaymentsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(779, 360);
+            this.ClientSize = new System.Drawing.Size(779, 434);
+            this.Controls.Add(this.comboBoxIDReservation);
             this.Controls.Add(this.comboBoxPaymentStatus);
             this.Controls.Add(this.comboBoxPaymentMethod);
             this.Controls.Add(this.buttonClear);
@@ -194,7 +198,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxAmount);
             this.Controls.Add(this.textBoxPaymentDate);
-            this.Controls.Add(this.textBoxReservationID);
             this.Name = "AddPaymentsForm";
             this.Text = "Добавление нового платежа";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddPaymentsForm_FormClosed);
@@ -212,11 +215,11 @@
         public System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxAmount;
         private System.Windows.Forms.TextBox textBoxPaymentDate;
-        private System.Windows.Forms.TextBox textBoxReservationID;
         private System.Windows.Forms.Button buttonClear;
         private System.Windows.Forms.Button buttonAddPayments;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.ComboBox comboBoxPaymentMethod;
         private System.Windows.Forms.ComboBox comboBoxPaymentStatus;
+        private System.Windows.Forms.ComboBox comboBoxIDReservation;
     }
 }

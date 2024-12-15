@@ -19,12 +19,13 @@ namespace TourismDB
             textClient.Add(textBoxPhoneNumber);
             textClient.Add(textBoxAddress);
             textClient.Add(textBoxPassportNumber);
+            LoadClientIDs();
             Form1.SetReadOnly(textClient, true);
         }
 
         private void buttonAddClients_Click(object sender, EventArgs e)
         {
-            if (textBoxIDClient.Text == "")
+            if (comboBoxClientID.Text == "")
             {
                 MessageBox.Show("Введите ID клиента");
                 return;
@@ -34,7 +35,7 @@ namespace TourismDB
                 MessageBox.Show("Поля Имя и Фамилия не могут быть пустыми.");
                 return;
             }
-            string clientId = textBoxIDClient.Text;
+            string clientId = comboBoxClientID.Text;
             Form1.ExecuteQuery($"UPDATE Clients SET FirstName = '{textBoxFirstName.Text}', LastName = '{textBoxLastName.Text}', DateOfBirth = '{textBoxDateOfBirth.Text}', " +
             $"Email = '{textBoxEmail.Text}', PhoneNumber = '{textBoxPhoneNumber.Text}', Address = '{textBoxAddress.Text}', " +
             $"PassportNumber = '{textBoxPassportNumber.Text}' WHERE ClientID = {clientId}");
@@ -44,12 +45,12 @@ namespace TourismDB
 
         private void LoadDataClient_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBoxIDClient.Text))
+            if (string.IsNullOrWhiteSpace(comboBoxClientID.Text))
             {
                 MessageBox.Show("Введите ID клиента.");
                 return;
             }
-            if (!int.TryParse(textBoxIDClient.Text, out int clientId))
+            if (!int.TryParse(comboBoxClientID.Text, out int clientId))
             {
                 MessageBox.Show("ID клиента должен быть числом.");
                 ClearFields();
@@ -75,6 +76,37 @@ namespace TourismDB
             }
         }
 
+        private void LoadClientIDs()
+        {
+            try
+            {
+                Form1.ExecuteQuery("SELECT ClientID FROM Clients ORDER BY ClientID");
+
+                if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0)
+                {
+                    comboBoxClientID.Items.Clear();
+
+                    foreach (DataRow row in Form1.currentDataTable.Rows)
+                    {
+                        comboBoxClientID.Items.Add(row["ClientID"].ToString());
+                    }
+
+                    if (comboBoxClientID.Items.Count > 0)
+                    {
+                        comboBoxClientID.SelectedIndex = 0;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Не удалось загрузить ID клиентов.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при загрузке ID клиентов: {ex.Message}");
+            }
+        }
+
         private void Back_Click(object sender, EventArgs e)
         {
             Form1.GoForm1(this);
@@ -87,7 +119,6 @@ namespace TourismDB
 
         private void ClearFields()
         {
-            textBoxIDClient.Text = "";
             textBoxFirstName.Text = "";
             textBoxLastName.Text = "";
             textBoxDateOfBirth.Text = "";
