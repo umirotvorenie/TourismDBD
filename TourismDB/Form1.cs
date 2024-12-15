@@ -157,6 +157,10 @@ namespace TourismDB
                 try
                 {
                     conn.Open();
+                    using (SQLiteCommand pragmaCommand = new SQLiteCommand("PRAGMA foreign_keys = ON;", conn))
+                    {
+                        pragmaCommand.ExecuteNonQuery();
+                    }
                     using (SQLiteCommand command = new SQLiteCommand(query, conn))
                     {
                         if (query.TrimStart().StartsWith("SELECT", StringComparison.OrdinalIgnoreCase))
@@ -383,12 +387,6 @@ namespace TourismDB
                 MessageBox.Show("Не удалось определить ID клиента.");
                 return;
             }
-            ExecuteQuery($"SELECT COUNT(*) AS ReservationCount FROM Reservation WHERE ClientID = {clientId}");
-            if (currentDataTable != null && currentDataTable.Rows.Count > 0 && int.TryParse(currentDataTable.Rows[0]["ReservationCount"].ToString(), out int reservationCount) && reservationCount > 0)
-            {
-                MessageBox.Show("Невозможно удалить клиента, так как на него существуют бронирования.");
-                return;
-            }
             var result = MessageBox.Show($"Вы уверены, что хотите удалить клиента с ID {clientId}?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
@@ -422,12 +420,6 @@ namespace TourismDB
                 MessageBox.Show("Не удалось определить ID тура.");
                 return;
             }
-            ExecuteQuery($"SELECT COUNT(*) AS ReservationCount FROM Reservation WHERE TourID = {tourId}");
-            if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0 && int.TryParse(Form1.currentDataTable.Rows[0]["ReservationCount"].ToString(), out int reservationCount) && reservationCount > 0)
-            {
-                MessageBox.Show("Невозможно удалить тур, так как на него существуют бронирования.");
-                return;
-            }
             var result = MessageBox.Show($"Вы уверены, что хотите удалить тур с ID {tourId}?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
@@ -448,12 +440,6 @@ namespace TourismDB
             if (selectedRow.Cells["ReservationID"].Value == null || !int.TryParse(selectedRow.Cells["ReservationID"].Value.ToString(), out int reservId))
             {
                 MessageBox.Show("Не удалось определить ID брони.");
-                return;
-            }
-            ExecuteQuery($"SELECT COUNT(*) AS PaymentsCount FROM Payments WHERE ReservationID = {reservId}");
-            if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0 && int.TryParse(Form1.currentDataTable.Rows[0]["PaymentsCount"].ToString(), out int paymentsCount) && paymentsCount > 0)
-            {
-                MessageBox.Show("Невозможно удалить бронь, так как она уже оплачена.");
                 return;
             }
             var result = MessageBox.Show($"Вы уверены, что хотите удалить бронь с ID {reservId}?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
