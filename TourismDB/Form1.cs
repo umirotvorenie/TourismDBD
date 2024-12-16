@@ -473,6 +473,28 @@ namespace TourismDB
             ExecuteQuery("SELECT * FROM Payments", dataGridViewPayments);
         }
 
+        private void buttonDeleteStaff_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewStaff.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Выберите сотрудника для удаления.");
+                return;
+            }
+            DataGridViewRow selectedRow = dataGridViewStaff.SelectedRows[0];
+            if (selectedRow.Cells["StaffID"].Value == null || !int.TryParse(selectedRow.Cells["StaffID"].Value.ToString(), out int staffId))
+            {
+                MessageBox.Show("Не удалось определить ID сотрудника.");
+                return;
+            }
+            var result = MessageBox.Show($"Вы уверены, что хотите удалить сотрудника с ID {staffId}?", "Подтверждение удаления", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                ExecuteQuery($"DELETE FROM Staff WHERE StaffID = {staffId}");
+                MessageBox.Show("Сотрудник успешно удалён.");
+            }
+            ExecuteQuery("SELECT * FROM Staff", dataGridViewStaff);
+        }
+
         private void buttonUpdateTours_Click(object sender, EventArgs e)
         {
             GoForm(new FormUpdateTours());
@@ -619,10 +641,6 @@ namespace TourismDB
         private void buttonUpdateStaff_Click(object sender, EventArgs e)
         {
             GoForm(new FormUpdateStaff());
-        }
-
-        private void buttonDeleteStaff_Click(object sender, EventArgs e)
-        {
         }
     }
 }

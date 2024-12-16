@@ -7,7 +7,7 @@ namespace TourismDB
 {
     public partial class FormUpdateClients : Form
     {
-        public List<System.Windows.Forms.TextBox> textClient = new List<System.Windows.Forms.TextBox>();
+        public List<TextBox> textClient = new List<TextBox>();
 
         public FormUpdateClients()
         {
@@ -25,14 +25,9 @@ namespace TourismDB
 
         private void buttonAddClients_Click(object sender, EventArgs e)
         {
-            if (comboBoxClientID.Text == "")
-            {
-                MessageBox.Show("Введите ID клиента");
-                return;
-            }
             if (textBoxFirstName.Text == "" || textBoxLastName.Text == "")
             {
-                MessageBox.Show("Поля Имя и Фамилия не могут быть пустыми.");
+                MessageBox.Show("Обязательные поля не могут быть пустыми: Имя, Фамилия.");
                 return;
             }
             string clientId = comboBoxClientID.Text;
@@ -45,18 +40,7 @@ namespace TourismDB
 
         private void LoadDataClient_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(comboBoxClientID.Text))
-            {
-                MessageBox.Show("Введите ID клиента.");
-                return;
-            }
-            if (!int.TryParse(comboBoxClientID.Text, out int clientId))
-            {
-                MessageBox.Show("ID клиента должен быть числом.");
-                ClearFields();
-                return;
-            }
-            Form1.ExecuteQuery($"SELECT FirstName, LastName, DateOfBirth, Email, PhoneNumber, Address, PassportNumber FROM Clients WHERE ClientID = {clientId}");
+            Form1.ExecuteQuery($"SELECT FirstName, LastName, DateOfBirth, Email, PhoneNumber, Address, PassportNumber FROM Clients WHERE ClientID = {comboBoxClientID.Text}");
             if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0)
             {
                 DataRow row = Form1.currentDataTable.Rows[0];
@@ -81,16 +65,13 @@ namespace TourismDB
             try
             {
                 Form1.ExecuteQuery("SELECT ClientID FROM Clients ORDER BY ClientID");
-
                 if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0)
                 {
                     comboBoxClientID.Items.Clear();
-
                     foreach (DataRow row in Form1.currentDataTable.Rows)
                     {
                         comboBoxClientID.Items.Add(row["ClientID"].ToString());
                     }
-
                     if (comboBoxClientID.Items.Count > 0)
                     {
                         comboBoxClientID.SelectedIndex = 0;

@@ -7,7 +7,7 @@ namespace TourismDB
 {
     public partial class FormUpdateStaff : Form
     {
-        public List<System.Windows.Forms.TextBox> textStaff = new List<System.Windows.Forms.TextBox>();
+        public List<TextBox> textStaff = new List<TextBox>();
 
         public FormUpdateStaff()
         {
@@ -23,20 +23,24 @@ namespace TourismDB
             Form1.SetReadOnly(textStaff, true);
         }
 
+        private void buttonAddStaff_Click(object sender, EventArgs e)
+        {
+            if (textBoxFirstName.Text == "" || textBoxLastName.Text == "" || textBoxHireDate.Text == "" || textBoxEmail.Text == "")
+            {
+                MessageBox.Show("Обязательные поля не могут быть пустыми: Имя, Фамилия, Дата приема на работу, Почта");
+                return;
+            }
+            string clientId = comboBoxIDStaff.Text;
+            Form1.ExecuteQuery($"UPDATE Staff SET FirstName = '{textBoxFirstName.Text}', LastName = '{textBoxLastName.Text}', Position = '{textBoxPosition.Text}', " +
+            $"Email = '{textBoxEmail.Text}', PhoneNumber = '{textBoxPhoneNumber.Text}', HireDate = '{textBoxHireDate.Text}', " +
+            $"Salary = '{textBoxSalary.Text}' WHERE StaffID = {clientId}");
+            MessageBox.Show("Операция прошла успешно");
+            ClearFields();
+        }
+
         private void LoadDataStaff_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(comboBoxIDStaff.Text))
-            {
-                MessageBox.Show("Введите ID сотрудника.");
-                return;
-            }
-            if (!int.TryParse(comboBoxIDStaff.Text, out int staffId))
-            {
-                MessageBox.Show("ID сотрудника должен быть числом.");
-                ClearFields();
-                return;
-            }
-            Form1.ExecuteQuery($"SELECT FirstName, LastName, Position, Email, PhoneNumber, HireDate, Salary FROM Staff WHERE StaffID = {staffId}");
+            Form1.ExecuteQuery($"SELECT FirstName, LastName, Position, Email, PhoneNumber, HireDate, Salary FROM Staff WHERE StaffID = {comboBoxIDStaff.Text}");
             if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0)
             {
                 DataRow row = Form1.currentDataTable.Rows[0];
@@ -85,26 +89,6 @@ namespace TourismDB
             {
                 MessageBox.Show($"Ошибка при загрузке ID сотрудников: {ex.Message}");
             }
-        }
-
-        private void buttonAddStaff_Click(object sender, EventArgs e)
-        {
-            if (comboBoxIDStaff.Text == "")
-            {
-                MessageBox.Show("Введите ID сотрудника");
-                return;
-            }
-            if (textBoxFirstName.Text == "" || textBoxLastName.Text == "" || textBoxHireDate.Text == "" || textBoxEmail.Text == "")
-            {
-                MessageBox.Show("Обязательные поля не могут быть пустыми: Имя, Фамилия, Дата приема на работу, Почта");
-                return;
-            }
-            string clientId = comboBoxIDStaff.Text;
-            Form1.ExecuteQuery($"UPDATE Staff SET FirstName = '{textBoxFirstName.Text}', LastName = '{textBoxLastName.Text}', Position = '{textBoxPosition.Text}', " +
-            $"Email = '{textBoxEmail.Text}', PhoneNumber = '{textBoxPhoneNumber.Text}', HireDate = '{textBoxHireDate.Text}', " +
-            $"Salary = '{textBoxSalary.Text}' WHERE StaffID = {clientId}");
-            MessageBox.Show("Операция прошла успешно");
-            ClearFields();
         }
 
         private void ClearFields()

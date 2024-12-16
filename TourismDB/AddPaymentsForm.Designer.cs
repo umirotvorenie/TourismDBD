@@ -73,7 +73,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(85, 100);
+            this.label4.Location = new System.Drawing.Point(85, 97);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 25);
             this.label4.TabIndex = 35;
@@ -85,7 +85,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(27, 64);
+            this.label3.Location = new System.Drawing.Point(27, 61);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(136, 25);
             this.label3.TabIndex = 34;
@@ -130,7 +130,7 @@
             this.buttonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.buttonClear.ForeColor = System.Drawing.Color.White;
-            this.buttonClear.Location = new System.Drawing.Point(572, 168);
+            this.buttonClear.Location = new System.Drawing.Point(577, 127);
             this.buttonClear.Name = "buttonClear";
             this.buttonClear.Size = new System.Drawing.Size(172, 35);
             this.buttonClear.TabIndex = 40;
@@ -160,7 +160,7 @@
             this.buttonBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.buttonBack.ForeColor = System.Drawing.Color.White;
-            this.buttonBack.Location = new System.Drawing.Point(572, 127);
+            this.buttonBack.Location = new System.Drawing.Point(577, 168);
             this.buttonBack.Name = "buttonBack";
             this.buttonBack.Size = new System.Drawing.Size(172, 35);
             this.buttonBack.TabIndex = 38;
@@ -171,6 +171,7 @@
             // comboBoxPaymentMethod
             // 
             this.comboBoxPaymentMethod.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(51)))), ((int)(((byte)(65)))));
+            this.comboBoxPaymentMethod.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxPaymentMethod.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxPaymentMethod.ForeColor = System.Drawing.Color.White;
             this.comboBoxPaymentMethod.FormattingEnabled = true;
@@ -186,6 +187,7 @@
             // comboBoxPaymentStatus
             // 
             this.comboBoxPaymentStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(51)))), ((int)(((byte)(65)))));
+            this.comboBoxPaymentStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxPaymentStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxPaymentStatus.ForeColor = System.Drawing.Color.White;
             this.comboBoxPaymentStatus.FormattingEnabled = true;
@@ -201,13 +203,15 @@
             // 
             this.comboBoxIDReservation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(51)))), ((int)(((byte)(65)))));
             this.comboBoxIDReservation.DropDownHeight = 50;
+            this.comboBoxIDReservation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxIDReservation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxIDReservation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.comboBoxIDReservation.ForeColor = System.Drawing.Color.White;
             this.comboBoxIDReservation.FormattingEnabled = true;
             this.comboBoxIDReservation.IntegralHeight = false;
             this.comboBoxIDReservation.Location = new System.Drawing.Point(341, 31);
             this.comboBoxIDReservation.Name = "comboBoxIDReservation";
-            this.comboBoxIDReservation.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxIDReservation.Size = new System.Drawing.Size(73, 24);
             this.comboBoxIDReservation.TabIndex = 43;
             // 
             // AddPaymentsForm
@@ -215,7 +219,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(51)))), ((int)(((byte)(65)))));
-            this.ClientSize = new System.Drawing.Size(753, 263);
+            this.ClientSize = new System.Drawing.Size(761, 263);
             this.Controls.Add(this.comboBoxIDReservation);
             this.Controls.Add(this.comboBoxPaymentStatus);
             this.Controls.Add(this.comboBoxPaymentMethod);

@@ -7,7 +7,7 @@ namespace TourismDB
 {
     public partial class FormUpdateReservations : Form
     {
-        public List<System.Windows.Forms.TextBox> textReserv = new List<System.Windows.Forms.TextBox>();
+        public List<TextBox> textReserv = new List<TextBox>();
 
         public FormUpdateReservations()
         {
@@ -15,22 +15,44 @@ namespace TourismDB
             comboBoxStatus.SelectedIndex = 0;
             textReserv.Add(textBoxReservationDate);
             textReserv.Add(textBoxSeatsReserved);
-            LoadClientIDs();
-            LoadReservationIDs();
-            LoadToursIDs();
             comboBoxClientID.Enabled = false;
             comboBoxTourID.Enabled = false;
             comboBoxStatus.Enabled = false;
             Form1.SetReadOnly(textReserv, true);
+            LoadClientIDs();
+            LoadReservationIDs();
+            LoadToursIDs();
+        }
+
+        private void buttonAddReservation_Click(object sender, EventArgs e)
+        {
+            if (comboBoxClientID.Text == "" || comboBoxTourID.Text == "" || textBoxReservationDate.Text == "" || textBoxSeatsReserved.Text == "")
+            {
+                MessageBox.Show("Обязательные поля не могут быть пустыми: ID Клиента, ID Тура, Дата бронирования, Мест забронировано.");
+                return;
+            }
+            int seatsReserved;
+            if (!int.TryParse(textBoxSeatsReserved.Text, out seatsReserved))
+            {
+                MessageBox.Show("Места бронирования должны быть числом.");
+                return;
+            }
+            Form1.ExecuteQuery($"SELECT AvailableSeats FROM Tours WHERE TourID = {comboBoxTourID.Text}", null);
+            int availableSeats = Convert.ToInt32(Form1.currentDataTable.Rows[0]["AvailableSeats"]);
+            if (availableSeats < seatsReserved)
+            {
+                MessageBox.Show("Недостаточно доступных мест для бронирования.");
+                return;
+            }
+            string reservId = comboBoxIDReservation.Text;
+            Form1.ExecuteQuery($"UPDATE Reservation SET ClientID = '{comboBoxClientID.Text}', TourID = '{comboBoxTourID.Text}', ReservationDate = '{textBoxReservationDate.Text}', " +
+            $"SeatsReserved = '{textBoxSeatsReserved.Text}', Status = '{comboBoxStatus.Text}' WHERE ReservationID = '{comboBoxIDReservation.Text}'");
+            MessageBox.Show("Операция прошла успешно");
+            ClearFields();
         }
 
         private void LoadDataReservation_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(comboBoxIDReservation.Text))
-            {
-                MessageBox.Show("Введите ID брони.");
-                return;
-            }
             Form1.ExecuteQuery($"SELECT ClientID, TourID, ReservationDate, SeatsReserved, Status FROM Reservation WHERE ReservationID = {comboBoxIDReservation.Text}");
             if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0)
             {
@@ -47,7 +69,7 @@ namespace TourismDB
             }
             else
             {
-                MessageBox.Show("Бронь с таким ID не найден.");
+                MessageBox.Show("Бронь с таким ID не найдена.");
                 ClearFields();
             }
         }
@@ -61,12 +83,10 @@ namespace TourismDB
                 if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0)
                 {
                     comboBoxClientID.Items.Clear();
-
                     foreach (DataRow row in Form1.currentDataTable.Rows)
                     {
                         comboBoxClientID.Items.Add(row["ClientID"].ToString());
                     }
-
                     if (comboBoxClientID.Items.Count > 0)
                     {
                         comboBoxClientID.SelectedIndex = 0;
@@ -88,16 +108,13 @@ namespace TourismDB
             try
             {
                 Form1.ExecuteQuery("SELECT ReservationID FROM Reservation ORDER BY ReservationID");
-
                 if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0)
                 {
                     comboBoxIDReservation.Items.Clear();
-
                     foreach (DataRow row in Form1.currentDataTable.Rows)
                     {
                         comboBoxIDReservation.Items.Add(row["ReservationID"].ToString());
                     }
-
                     if (comboBoxIDReservation.Items.Count > 0)
                     {
                         comboBoxIDReservation.SelectedIndex = 0;
@@ -105,12 +122,12 @@ namespace TourismDB
                 }
                 else
                 {
-                    MessageBox.Show("Не удалось загрузить ID клиентов.");
+                    MessageBox.Show("Не удалось загрузить ID бронирований.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при загрузке ID клиентов: {ex.Message}");
+                MessageBox.Show($"Ошибка при загрузке ID бронирований: {ex.Message}");
             }
         }
 
@@ -119,16 +136,13 @@ namespace TourismDB
             try
             {
                 Form1.ExecuteQuery("SELECT TourID FROM Tours ORDER BY TourID");
-
                 if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0)
                 {
                     comboBoxTourID.Items.Clear();
-
                     foreach (DataRow row in Form1.currentDataTable.Rows)
                     {
                         comboBoxTourID.Items.Add(row["TourID"].ToString());
                     }
-
                     if (comboBoxTourID.Items.Count > 0)
                     {
                         comboBoxTourID.SelectedIndex = 0;
@@ -136,12 +150,12 @@ namespace TourismDB
                 }
                 else
                 {
-                    MessageBox.Show("Не удалось загрузить ID клиентов.");
+                    MessageBox.Show("Не удалось загрузить ID туров.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при загрузке ID клиентов: {ex.Message}");
+                MessageBox.Show($"Ошибка при загрузке ID туров: {ex.Message}");
             }
         }
 
@@ -153,45 +167,6 @@ namespace TourismDB
             textBoxSeatsReserved.Text = "";
             Form1.SetReadOnly(textReserv, true);
             comboBoxStatus.Enabled = false;
-        }
-
-        private void buttonAddReservation_Click(object sender, EventArgs e)
-        {
-            if (comboBoxClientID.Text == "" || comboBoxTourID.Text == "" || textBoxReservationDate.Text == "" || textBoxSeatsReserved.Text == "")
-            {
-                MessageBox.Show("Обязательные поля не могут быть пустыми: ID Клиента, ID Тура, Дата бронирования, Мест забронировано.");
-                return;
-            }
-            int seatsReserved;
-            if (!int.TryParse(textBoxSeatsReserved.Text, out seatsReserved))
-            {
-                MessageBox.Show("SeatsReserved должен быть числом.");
-                return;
-            }
-            Form1.ExecuteQuery($"SELECT 1 FROM Clients WHERE ClientID = {comboBoxClientID.Text}", null);
-            if (Form1.currentDataTable.Rows.Count == 0)
-            {
-                MessageBox.Show($"Клиент с ID {comboBoxClientID.Text} не найден.");
-                return;
-            }
-            Form1.ExecuteQuery($"SELECT 1 FROM Tours WHERE TourID = {comboBoxTourID.Text}", null);
-            if (Form1.currentDataTable.Rows.Count == 0)
-            {
-                MessageBox.Show($"Тур с ID {comboBoxTourID.Text} не найден.");
-                return;
-            }
-            Form1.ExecuteQuery($"SELECT AvailableSeats FROM Tours WHERE TourID = {comboBoxTourID.Text}", null);
-            int availableSeats = Convert.ToInt32(Form1.currentDataTable.Rows[0]["AvailableSeats"]);
-            if (availableSeats < seatsReserved)
-            {
-                MessageBox.Show("Недостаточно доступных мест для бронирования.");
-                return;
-            }
-            string reservId = comboBoxIDReservation.Text;
-            Form1.ExecuteQuery($"UPDATE Reservation SET ClientID = '{comboBoxClientID.Text}', TourID = '{comboBoxTourID.Text}', ReservationDate = '{textBoxReservationDate.Text}', " +
-            $"SeatsReserved = '{textBoxSeatsReserved.Text}', Status = '{comboBoxStatus.Text}' WHERE ReservationID = '{comboBoxIDReservation.Text}'");
-            MessageBox.Show("Операция прошла успешно");
-            ClearFields();
         }
 
         private void buttonBack_Click(object sender, EventArgs e)

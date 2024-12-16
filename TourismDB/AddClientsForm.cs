@@ -19,7 +19,7 @@ namespace TourismDB
         {
             if (textBoxFirstName.Text == "" || textBoxLastName.Text == "" || textBoxPassportNumber.Text == "" || textBoxEmail.Text == "")
             {
-                MessageBox.Show($"Не удалось добавить пользователя. Введите обязательные поля для ввода: Имя, Фамилия, Почта, Пасспорт");
+                MessageBox.Show($"Не удалось добавить пользователя. Заполните обязательные поля: Имя, Фамилия, Почта, Пасспорт");
             }
             else
             {

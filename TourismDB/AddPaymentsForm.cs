@@ -16,7 +16,7 @@ namespace TourismDB
         {
             if (comboBoxIDReservation.Text == "" || textBoxPaymentDate.Text == "" || textBoxAmount.Text == "" || comboBoxPaymentMethod.Text == "")
             {
-                MessageBox.Show($"Не удалось добавить пользователя. Введите обязательные поля для ввода: ID Бронирования, Дата оплаты, Сумма, Способ оплаты");
+                MessageBox.Show($"Не удалось добавить платеж. Заполните обязательные поля: ID Бронирования, Дата оплаты, Сумма, Способ оплаты");
             }
             else
             {
@@ -55,12 +55,12 @@ namespace TourismDB
                 }
                 else
                 {
-                    MessageBox.Show("Не удалось загрузить ID клиентов.");
+                    MessageBox.Show("Не удалось загрузить ID бронирований.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при загрузке ID клиентов: {ex.Message}");
+                MessageBox.Show($"Ошибка при загрузке ID бронирований: {ex.Message}");
             }
         }
 

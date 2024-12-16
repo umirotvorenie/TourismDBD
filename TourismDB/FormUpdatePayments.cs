@@ -7,7 +7,7 @@ namespace TourismDB
 {
     public partial class FormUpdatePayments : Form
     {
-        public List<System.Windows.Forms.TextBox> textPayment = new List<System.Windows.Forms.TextBox>();
+        public List<TextBox> textPayment = new List<TextBox>();
         private string method = "", status = "";
 
         public FormUpdatePayments()
@@ -25,13 +25,22 @@ namespace TourismDB
             comboBoxIDReservation.Enabled = false;
         }
 
-        private void LoadDataPayments_Click(object sender, EventArgs e)
+        private void buttonAddPayments_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(comboBoxPaymentID.Text))
+            if (comboBoxIDReservation.Text == "" || textBoxPaymentDate.Text == "" || textBoxAmount.Text == "" || comboBoxPaymentMethod.Text == "")
             {
-                MessageBox.Show("Введите ID брони.");
+                MessageBox.Show("Обязательные поля не могут быть пустыми: ID Бронирования, Дата оплаты, Сумма, Способ оплаты.");
                 return;
             }
+            string paymentId = comboBoxPaymentID.Text;
+            Form1.ExecuteQuery($"UPDATE Payments SET ReservationID = '{comboBoxIDReservation.Text}', PaymentDate = '{textBoxPaymentDate.Text}', Amount = '{textBoxAmount.Text}', " +
+            $"PaymentMethod = '{comboBoxPaymentMethod.Text}', PaymentStatus = '{comboBoxPaymentStatus.Text}'  WHERE PaymentID = {paymentId}");
+            MessageBox.Show("Операция прошла успешно");
+            ClearFields();
+        }
+
+        private void LoadDataPayments_Click(object sender, EventArgs e)
+        {
             Form1.ExecuteQuery($"SELECT ReservationID, PaymentDate, Amount, PaymentMethod, PaymentStatus FROM Payments WHERE PaymentID = {comboBoxPaymentID.Text}");
             if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0)
             {
@@ -62,12 +71,10 @@ namespace TourismDB
                 if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0)
                 {
                     comboBoxIDReservation.Items.Clear();
-
                     foreach (DataRow row in Form1.currentDataTable.Rows)
                     {
                         comboBoxIDReservation.Items.Add(row["ReservationID"].ToString());
                     }
-
                     if (comboBoxIDReservation.Items.Count > 0)
                     {
                         comboBoxIDReservation.SelectedIndex = 0;
@@ -75,12 +82,12 @@ namespace TourismDB
                 }
                 else
                 {
-                    MessageBox.Show("Не удалось загрузить ID клиентов.");
+                    MessageBox.Show("Не удалось загрузить ID бронирований.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при загрузке ID клиентов: {ex.Message}");
+                MessageBox.Show($"Ошибка при загрузке ID бронирований: {ex.Message}");
             }
         }
 
@@ -89,16 +96,13 @@ namespace TourismDB
             try
             {
                 Form1.ExecuteQuery("SELECT PaymentID FROM Payments ORDER BY PaymentID");
-
                 if (Form1.currentDataTable != null && Form1.currentDataTable.Rows.Count > 0)
                 {
                     comboBoxPaymentID.Items.Clear();
-
                     foreach (DataRow row in Form1.currentDataTable.Rows)
                     {
                         comboBoxPaymentID.Items.Add(row["PaymentID"].ToString());
                     }
-
                     if (comboBoxPaymentID.Items.Count > 0)
                     {
                         comboBoxPaymentID.SelectedIndex = 0;
@@ -113,26 +117,6 @@ namespace TourismDB
             {
                 MessageBox.Show($"Ошибка при загрузке ID платежей: {ex.Message}");
             }
-        }
-
-        private void buttonAddPayments_Click(object sender, EventArgs e)
-        {
-            if (comboBoxIDReservation.Text == "" || textBoxPaymentDate.Text == "" || textBoxAmount.Text == "" || comboBoxPaymentMethod.Text == "")
-            {
-                MessageBox.Show("Обязательные поля не могут быть пустыми: ID Бронирования, Дата оплаты, Сумма, Способ оплаты.");
-                return;
-            }
-            Form1.ExecuteQuery($"SELECT 1 FROM Reservation WHERE ReservationID = {comboBoxIDReservation.Text}", null);
-            if (Form1.currentDataTable.Rows.Count == 0)
-            {
-                MessageBox.Show($"Бронь с ID {comboBoxIDReservation.Text} не найдена.");
-                return;
-            }
-            string paymentId = comboBoxPaymentID.Text;
-            Form1.ExecuteQuery($"UPDATE Payments SET ReservationID = '{comboBoxIDReservation.Text}', PaymentDate = '{textBoxPaymentDate.Text}', Amount = '{textBoxAmount.Text}', " +
-            $"PaymentMethod = '{comboBoxPaymentMethod.Text}', PaymentStatus = '{comboBoxPaymentStatus.Text}'  WHERE PaymentID = {paymentId}");
-            MessageBox.Show("Операция прошла успешно");
-            ClearFields();
         }
 
         private void ClearFields()

@@ -23,7 +23,7 @@ namespace TourismDB
             int seatsReserved;
             if (!int.TryParse(textBoxSeatsReserved.Text, out seatsReserved))
             {
-                MessageBox.Show("SeatsReserved должен быть числом.");
+                MessageBox.Show("Места бронирования должны быть числом.");
                 return;
             }
             Form1.ExecuteQuery($"SELECT 1 FROM Clients WHERE ClientID = {comboBoxClientID.Text}", null);
@@ -112,12 +112,12 @@ namespace TourismDB
                 }
                 else
                 {
-                    MessageBox.Show("Не удалось загрузить ID клиентов.");
+                    MessageBox.Show("Не удалось загрузить ID туров.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка при загрузке ID клиентов: {ex.Message}");
+                MessageBox.Show($"Ошибка при загрузке ID туров: {ex.Message}");
             }
         }
 

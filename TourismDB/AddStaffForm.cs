@@ -14,13 +14,13 @@ namespace TourismDB
         {
             if (textBoxFirstName.Text == "" || textBoxLastName.Text == "" || textBoxHireDate.Text == "" || textBoxEmail.Text == "")
             {
-                MessageBox.Show($"Не удалось добавить пользователя. Введите обязательные поля для ввода: Имя, Фамилия, Дата приема на работу, Пасспорт");
+                MessageBox.Show($"Не удалось добавить сотрудника. Заполните обязательные поля: Имя, Фамилия, Дата приема на работу, Пасспорт");
             }
             else
             {
                 Form1.ExecuteQuery($"INSERT INTO Staff(FirstName, LastName, Position, Email, PhoneNumber, HireDate, Salary) " +
                 $"VALUES ('{textBoxFirstName.Text}', '{textBoxLastName.Text}', '{textBoxPosition.Text}', '{textBoxEmail.Text}', '{textBoxPhoneNumber.Text}', '{textBoxHireDate.Text}', '{textBoxSalary.Text}')");
-                MessageBox.Show("Клиент успешно добавлен");
+                MessageBox.Show("Сотрудник успешно добавлен");
                 ClearFields();
             }
         }

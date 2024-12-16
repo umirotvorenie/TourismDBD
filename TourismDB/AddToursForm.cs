@@ -14,14 +14,14 @@ namespace TourismDB
         {
             if (textBoxTourName.Text == "" || textBoxStartDate.Text == "" || textBoxEndDate.Text == "" || textBoxPrice.Text == "")
             {
-                MessageBox.Show($"Не удалось добавить пользователя. Введите обязательные поля для ввода: Название тура, Дата начала, Дата окончания, Цена");
+                MessageBox.Show($"Не удалось добавить тур. Заполните обязательные поля: Название тура, Дата начала, Дата окончания, Цена");
             }
             else
             {
                 Form1.ExecuteQuery($"INSERT INTO Tours(TourName, Description, StartDate, EndDate, Price, Destination, AvailableSeats) " +
                 $"VALUES ('{textBoxTourName.Text}', '{textBoxDescription.Text}', '{textBoxStartDate.Text}', '{textBoxEndDate.Text}', " +
                 $"'{textBoxPrice.Text}', '{textBoxDestination.Text}', '{textBoxAvailableSeats.Text}')");
-                MessageBox.Show("Клиент успешно добавлен");
+                MessageBox.Show("Тур успешно добавлен");
                 ClearFields();
             }
         }
